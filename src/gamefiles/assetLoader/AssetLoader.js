@@ -2,6 +2,7 @@ import Boot from '../assets/backgrounds/UBoot1.png';
 import BootN from '../assets/backgrounds/UBoot1-n.png';
 //Himmel
 import Himmel from '../assets/backgrounds/Himmel.png';
+import Wolken from '../assets/backgrounds/Wolken.png';
 
 //Player Uboot
 import PlayerUboot from '../assets/PlayerUboot/Uboot.png';
@@ -18,6 +19,8 @@ import DeepSea from '../assets/Sea/DeepSea.png';
 import DeepSeaN from '../assets/Sea/DeepSea_n.png';
 import ExtreamDeepSea from '../assets/Sea/ExtreamDeepSea.png';
 import ExtreamDeepSeaN from '../assets/Sea/ExtreamDeepSea_n.png';
+import WaveFront from '../assets/Sea/waveFront.png';
+import WaveBack from '../assets/Sea/waveBack.png';
 
 //Base Ship
 import BaseShip from '../assets/BaseShip/schiff.png';
@@ -37,6 +40,7 @@ export {
     Himmel,
     Boot,
     BootN,
+    Wolken,
     //PlayerUboot
     PlayerUboot,
     PlayerUbootN,
@@ -51,6 +55,8 @@ export {
     DeepSeaN,
     ExtreamDeepSea,
     ExtreamDeepSeaN,
+    WaveFront,
+    WaveBack,
     //BaseShip
     BaseShip,
     BaseShipN,

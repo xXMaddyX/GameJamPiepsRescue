@@ -16,6 +16,7 @@ export default class Player {
         this.direction = "RIGHT";
         this.lightsActive = false;
         this.buttonQisPressed = false;
+        this.isSuface = false;
     };
     //-------------------------{{{{ PRELOAD FUNCTION }}}}----------------------------
     static loadSprites(scene) {
@@ -110,7 +111,7 @@ export default class Player {
             this.direction = "IDLE";
         }
 
-        if (this.cursors.up.isDown && !this.cursors.down.isDown) {
+        if (this.cursors.up.isDown && !this.cursors.down.isDown && !this.isSuface) {
             this.uboot.setVelocityY(-50);
             this.direction
         } else if (this.cursors.down.isDown && !this.cursors.up.isDown) {
@@ -124,6 +125,14 @@ export default class Player {
             this.buttonQisPressed = false;
         }
     };
+
+    checkIsSurface() {
+        if (this.uboot.y < 530) {
+            this.isSuface = true;
+        } else {
+            this.isSuface = false;
+        }
+    }
     //----------------------{{{{ ANIMATION STATE CONTROL }}}}-----------------------------
     animationStates(newState) {
         if (this.currentState === newState) return;
@@ -147,14 +156,15 @@ export default class Player {
         //Light Position Handlers
         this.updateLightPositionX(this.direction);
         this.updateLightPositionY();
+        //Animation Handler
         this.animationStates(this.direction);
+        //Dive Handler
+        this.checkIsSurface();
 
         //Check for Body and Obj
         if (this.uboot && this.uboot.body) {
-
             //Controls Updater
            this.constrolHandler();
-            console.log(this.uboot.y)
         }
     };
 }

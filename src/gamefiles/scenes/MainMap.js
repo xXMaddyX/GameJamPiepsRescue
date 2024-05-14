@@ -33,7 +33,7 @@ export default class SceneLvL1 extends Phaser.Scene {
         
         Player.initAnimations(this);
         this.player = new Player(this);
-        this.player.create(200, 500);
+        this.player.create(200, 530);
         this.player.setFollowCamera(this.sceneWidth, this.sceneHeight)
         
         this.initScene();
@@ -41,5 +41,6 @@ export default class SceneLvL1 extends Phaser.Scene {
 
     update(time, delta) {
         this.player.update(time, delta);
+        this.world.update(time, delta);
     };
 };

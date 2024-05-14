@@ -6,7 +6,7 @@ export default new Phaser.Game({
     pixelArt: true,
     scale: {
         mode: Phaser.DOM.RESIZE,
-        width: 1980,
+        width: 1920,
         height: 1080,
     },
     physics: {
