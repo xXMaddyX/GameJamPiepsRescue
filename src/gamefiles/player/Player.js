@@ -59,7 +59,7 @@ export default class Player {
 
         this.scene.cameras.main.startFollow(this.uboot)
         this.initKeybord();
-        this.scene.cameras.main
+        this.scene.cameras.main;
     };
 
     initKeybord() {

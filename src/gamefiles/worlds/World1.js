@@ -29,6 +29,7 @@ export default class World1 {
         /**@type {Phaser.Scene} */
         this.scene = scene;
         this.wolkenPool = [];
+        this.seaWeedPool = [];
         this.waveFrontPool = [];
         this.waveBackPool = [];
     };
@@ -60,7 +61,16 @@ export default class World1 {
         })
     };
 
+    startSeaweedAnim() {
+        this.seaWeedPool.forEach((seaweed, index) => {
+            const delay = index * 3000;
+            this.scene.time.delayedCall(delay, () => {
+                seaweed.anims.play(KEYS.KEY_SEAWEED);
+            });
+        });
+    };
     create() {
+        this.initAnimations();
         World1Config.backgroundPositions.forEach(({x, y, key, alpha, depth}) => {
             let image = this.scene.add.sprite(x, y, key).setPipeline("Light2D").setAlpha(alpha).setDepth(depth);
         });
@@ -81,15 +91,11 @@ export default class World1 {
             let waveBack = this.scene.add.sprite(x, y, key).setDepth(depth).setScale(scale);
             this.waveBackPool.push(waveBack);
         });
-        this.initAnimations();
-        this.seeweed1 = this.scene.physics.add.sprite(155, 1055 *2, KEYS.KEY_SEAWEED).setPipeline("Light2D").setDepth(1)
-        this.seeweed1.anims.play(KEYS.KEY_SEAWEED);
-
-        this.seeweed2 = this.scene.physics.add.sprite(480, 1055 *2, KEYS.KEY_SEAWEED).setPipeline("Light2D").setDepth(1)
-        this.seeweed2.anims.play(KEYS.KEY_SEAWEED)
-
-        this.seeweed3 = this.scene.physics.add.sprite(490, 1055 *2, KEYS.KEY_SEAWEED).setPipeline("Light2D").setDepth(1)
-        this.seeweed3.anims.play(KEYS.KEY_SEAWEED);
+        World1Config.seaWeedPosition.forEach(({x, y, key, depth, scale}) => {
+            let seaweed = this.scene.physics.add.sprite(x, y, key).setPipeline("Light2D").setDepth(depth).setScale(scale);
+            this.seaWeedPool.push(seaweed);
+        });
+        this.startSeaweedAnim();
     };
 
     update(time, delta) {
@@ -112,5 +118,6 @@ export default class World1 {
                 wave.x = calcBackPositionX(1920 * 2)
             }
         });
+        
     };
 };

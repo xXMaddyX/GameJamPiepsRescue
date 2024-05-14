@@ -52,8 +52,15 @@ const World1Config = {
         {x: calcBackPositionX(0), y: 537, key: KEYS.KEY_WAVEBACK, depth: 1, scale: 1},
         {x: calcBackPositionX(1920), y: 537, key: KEYS.KEY_WAVEBACK, depth: 1, scale: 1},
         {x: calcBackPositionX(1920*2), y: 537, key: KEYS.KEY_WAVEBACK, depth: 1, scale: 1},
-
-        
+    ],
+    seaWeedPosition:[
+        {x: 450, y: 1055 *2, key: KEYS.KEY_SEAWEED, depth: 1, scale: 1},
+        {x: 480, y: 1055 *2, key: KEYS.KEY_SEAWEED, depth: 1, scale: 1},
+        {x: 510, y: 1055 *2, key: KEYS.KEY_SEAWEED, depth: 1, scale: 1},
+        {x: 880, y: 1055 *2, key: KEYS.KEY_SEAWEED, depth: 1, scale: 1},
+        {x: 900, y: 1055 *2, key: KEYS.KEY_SEAWEED, depth: 1, scale: 1},
+        {x: 920, y: 1055 *2, key: KEYS.KEY_SEAWEED, depth: 1, scale: 1},
+        {x: 930, y: 1055 *2, key: KEYS.KEY_SEAWEED, depth: 1, scale: 1},
     ]
 }
 
