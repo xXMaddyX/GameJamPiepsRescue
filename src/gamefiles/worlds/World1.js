@@ -102,21 +102,21 @@ export default class World1 {
         this.wolkenPool.forEach(wolken => {
             wolken.x -= .25;
             if (wolken.x < -960) {
-                wolken.x = calcBackPositionX(1920 * 2)
-            }
+                wolken.x = calcBackPositionX(1920 * 2);
+            };
         });
         this.waveFrontPool.forEach(wave => {
             wave.x += .25;
             if (wave.x > calcBackPositionX(1920 * 2)) {
-                wave.x = calcBackPositionX(-1920)
-            }
+                wave.x = calcBackPositionX(-1920);
+            };
         });
 
         this.waveBackPool.forEach(wave => {
             wave.x -= .25;
             if (wave.x < -940) {
-                wave.x = calcBackPositionX(1920 * 2)
-            }
+                wave.x = calcBackPositionX(1920 * 2);
+            };
         });
         
     };

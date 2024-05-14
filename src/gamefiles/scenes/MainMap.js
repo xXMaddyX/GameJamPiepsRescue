@@ -32,7 +32,7 @@ export default class SceneLvL1 extends Phaser.Scene {
             targetColor = { r: 102, g: 102, b: 102 }; // 0x666666
         } else if (ubootY <= 1100) {
             targetColor = { r: 204, g: 204, b: 204 }; // 0xcccccc
-        }
+        };
 
         if (targetColor && (targetColor.r !== this.currentColor.r || targetColor.g !== this.currentColor.g || targetColor.b !== this.currentColor.b)) {
             this.tweens.add({
@@ -45,8 +45,8 @@ export default class SceneLvL1 extends Phaser.Scene {
                     this.lights.setAmbientColor(Phaser.Display.Color.GetColor(this.currentColor.r, this.currentColor.g, this.currentColor.b));
                 }
             });
-        }
-    }
+        };
+    };
 
     create() {
         this.physics.world.setBounds(0, 0, this.sceneWidth, this.sceneHeight);
@@ -62,12 +62,12 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.player.setFollowCamera(this.sceneWidth, this.sceneHeight);
 
         this.initScene();
-    }
+    };
 
     update(time, delta) {
         this.player.update(time, delta);
         this.world.update(time, delta);
         this.deepHandler();
         console.log(this.player.uboot.y);
-    }
-}
+    };
+};
