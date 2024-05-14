@@ -63,9 +63,11 @@ export default class Player {
     };
 
     initKeybord() {
-        this.cursors = this.scene.input.keyboard.createCursorKeys();
-        this.ButtonE = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E);
-        this.ButtonQ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q);
+        this.cursors = this.scene.input.keyboard.createCursorKeys(); //Uboot Controls
+        this.ButtonE = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.E); //Action Button
+        this.ButtonQ = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.Q); //Uboot Lights
+        this.ButtonW = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W); //Lift Crane
+        this.ButtonS = this.scene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S); //Lower Crane
     };
 
     setFollowCamera(width, height) {

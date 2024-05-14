@@ -62,9 +62,8 @@ export default class World1 {
     };
 
     startSeaweedAnim() {
-        this.seaWeedPool.forEach((seaweed, index) => {
-            const delay = index * 3000;
-            this.scene.time.delayedCall(delay, () => {
+        this.seaWeedPool.forEach((seaweed) => {
+            this.scene.time.delayedCall(seaweed.delay, () => {
                 seaweed.anims.play(KEYS.KEY_SEAWEED);
             });
         });
@@ -91,8 +90,9 @@ export default class World1 {
             let waveBack = this.scene.add.sprite(x, y, key).setDepth(depth).setScale(scale);
             this.waveBackPool.push(waveBack);
         });
-        World1Config.seaWeedPosition.forEach(({x, y, key, depth, scale}) => {
+        World1Config.seaWeedPosition.forEach(({x, y, key, depth, scale, delay}) => {
             let seaweed = this.scene.physics.add.sprite(x, y, key).setPipeline("Light2D").setDepth(depth).setScale(scale);
+            seaweed.delay = delay;
             this.seaWeedPool.push(seaweed);
         });
         this.startSeaweedAnim();
