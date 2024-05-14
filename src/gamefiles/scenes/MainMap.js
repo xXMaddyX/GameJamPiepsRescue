@@ -1,6 +1,5 @@
 import Phaser from "phaser";
 import World1 from "../worlds/World1";
-import { Boot, BootN } from "../assetLoader/AssetLoader";
 import Player from "../player/Player";
 
 const KEY_UBOOT = "Uboot";
@@ -14,7 +13,7 @@ export default class SceneLvL1 extends Phaser.Scene {
 
     initScene() {
         this.timer = 0;
-        this.currentColor = { r: 204, g: 204, b: 204 }; // Initial ambient color as an object
+        this.currentColor = { r: 204, g: 204, b: 204 };
     }
 
     preload() {
@@ -41,7 +40,7 @@ export default class SceneLvL1 extends Phaser.Scene {
                 r: targetColor.r,
                 g: targetColor.g,
                 b: targetColor.b,
-                duration: 1000, // Duration of the tween in milliseconds
+                duration: 1000,
                 onUpdate: () => {
                     this.lights.setAmbientColor(Phaser.Display.Color.GetColor(this.currentColor.r, this.currentColor.g, this.currentColor.b));
                 }
