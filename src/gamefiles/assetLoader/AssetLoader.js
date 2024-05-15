@@ -7,6 +7,13 @@ import Wolken from '../assets/backgrounds/Wolken.png';
 //Player Uboot
 import PlayerUboot from '../assets/PlayerUboot/Uboot.png';
 import PlayerUbootN from '../assets/PlayerUboot/Uboot_n.png';
+import EngineBubbles from '../assets/PlayerUboot/EngineBubbles.png';
+import EngineBubblesN from '../assets/PlayerUboot/EngineBubbles_n.png';
+import GreiferOpen from '../assets/PlayerUboot/GreiferOpen.png';
+import GreiferOpenN from '../assets/PlayerUboot/GreiferOpen_n.png';
+import GreiferDownAnim from '../assets/PlayerUboot/GreiferDownAnim.png';
+import GreiferDownAnimN from '../assets/PlayerUboot/GreiferDownAnim_n.png';
+
 
 //Sea Backgrounds
 import Boden from '../assets/Sea/Boden.png';
@@ -21,6 +28,9 @@ import ExtreamDeepSea from '../assets/Sea/ExtreamDeepSea.png';
 import ExtreamDeepSeaN from '../assets/Sea/ExtreamDeepSea_n.png';
 import WaveFront from '../assets/Sea/waveFront.png';
 import WaveBack from '../assets/Sea/waveBack.png';
+import Koralle from '../assets/envAssets/Koralle.png';
+import KoralleN from '../assets/envAssets/Koralle_n.png';
+import BubblesEnv from '../assets/envAssets/BubblesEnv.png';
 
 //Base Ship
 import BaseShip from '../assets/BaseShip/schiff.png';
@@ -44,6 +54,12 @@ export {
     //PlayerUboot
     PlayerUboot,
     PlayerUbootN,
+    EngineBubbles,
+    EngineBubblesN,
+    GreiferOpen,
+    GreiferOpenN,
+    GreiferDownAnim,
+    GreiferDownAnimN,
     //Backgrounds
     Boden,
     BodenN,
@@ -57,6 +73,8 @@ export {
     ExtreamDeepSeaN,
     WaveFront,
     WaveBack,
+    Koralle,
+    KoralleN,
     //BaseShip
     BaseShip,
     BaseShipN,
@@ -67,4 +85,5 @@ export {
     Chest1N,
     SeaWeed,
     SeaWeedN,
+    BubblesEnv,
 }

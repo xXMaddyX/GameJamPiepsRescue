@@ -16,6 +16,7 @@ const KEYS = {
     KEY_WAVEFRONT: "WaveFrontLvL1",
     KEY_WAVEBACK: "WaveBackLvl1",
     KEY_SEAWEED: "SeaWeed",
+    KEY_BUBBLESENV: "BubblesEnv",
 };
 
 const World1Config = {

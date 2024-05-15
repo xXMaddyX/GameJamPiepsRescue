@@ -1,5 +1,7 @@
 import Phaser from "phaser";
 import {
+    EngineBubbles,
+    EngineBubblesN,
     PlayerUboot,
     PlayerUbootN,
 } from "../assetLoader/AssetLoader";
@@ -7,6 +9,7 @@ import {
 const KEY_UBOOT = "PlayerUboot";
 const KEY_ANIM_UBOOT_MOVE = "PlayerUbootMove";
 const KEY_ANIM_UBOOT_IDLE = "PlayerUbootIdle";
+const KEY_ENGINEBUBBLES = "EngineBubbles";
 
 export default class Player {
     constructor(scene, world) {
@@ -22,7 +25,10 @@ export default class Player {
     static loadSprites(scene) {
         if (!scene.textures.exists(KEY_UBOOT)) scene.load.spritesheet(KEY_UBOOT, [PlayerUboot, PlayerUbootN], {
             frameWidth: 125, frameHeight: 93
-        })
+        });
+        if (!scene.textures.exists(KEY_ENGINEBUBBLES)) scene.load.spritesheet(KEY_ENGINEBUBBLES, [EngineBubbles, EngineBubblesN], {
+            frameWidth: 18, frameHeight: 21
+        });
     };
     //--------------------------{{{{ ANIMATION LOADER}}}}----------------------------
     static initAnimations(scene) {
@@ -49,6 +55,17 @@ export default class Player {
                 repeat: -1
             });
         };
+        if (!scene.anims.exists(KEY_ENGINEBUBBLES)) {
+            scene.anims.create({
+                key: KEY_ENGINEBUBBLES,
+                frames: scene.anims.generateFrameNumbers(KEY_ENGINEBUBBLES, {
+                    start: 0,
+                    end: 5
+                }),
+                frameRate: 5,
+                repeat: -1,
+            });
+        };
     };
     //----------------------------{{{{ CREATE SECTION}}}}--------------------------------
     create(x, y) {
@@ -57,7 +74,9 @@ export default class Player {
         this.ubootLight = this.scene.lights.addLight(this.uboot.x + 100, this.uboot.y + 40, 500).setIntensity(1);
         this.ubootLight.setVisible(false);
 
-        this.scene.cameras.main.startFollow(this.uboot)
+        this.engineBubbles = this.scene.add.sprite(this.uboot.x, this.uboot.y, KEY_ENGINEBUBBLES).setScale(2);
+
+        this.scene.cameras.main.startFollow(this.uboot);
         this.initKeybord();
         this.scene.cameras.main;
     };
@@ -81,16 +100,21 @@ export default class Player {
         switch(direction) {
             case "RIGHT":
                 this.uboot.flipX = false;
+                this.engineBubbles.flipX = false;
                 this.ubootLight.x = this.uboot.x + 100
+                this.engineBubbles.x = this.uboot.x -150
                 break;
             case "LEFT":
                 this.uboot.flipX = true;
-                this.ubootLight.x = this.uboot.x - 100
+                this.engineBubbles.flipX = true;
+                this.ubootLight.x = this.uboot.x - 100;
+                this.engineBubbles.x = this.uboot.x + 150;
                 break;
         }
     };
     updateLightPositionY() {
         this.ubootLight.y = this.uboot.y + 40;
+        this.engineBubbles.y = this.uboot.y;
     }
 
     //-------------------------{{{{ LIGHT Position HANDLER }}}}---------------------------
@@ -141,12 +165,17 @@ export default class Player {
         switch(newState) {
             case "IDLE":
                 this.uboot.anims.play(KEY_ANIM_UBOOT_IDLE)
+                this.engineBubbles.setVisible(false);
                 break;
             case "LEFT":
+                this.engineBubbles.setVisible(true);
                 this.uboot.anims.play(KEY_ANIM_UBOOT_MOVE)
+                this.engineBubbles.anims.play(KEY_ENGINEBUBBLES);
                 break;
             case "RIGHT":
+                this.engineBubbles.setVisible(true);
                 this.uboot.anims.play(KEY_ANIM_UBOOT_MOVE)
+                this.engineBubbles.anims.play(KEY_ENGINEBUBBLES);
                 break;
 
         };

@@ -21,6 +21,7 @@ import {
     SeaWeedN,
     WaveFront,
     WaveBack,
+    BubblesEnv,
 } from '../assetLoader/AssetLoader.js';
 
 
@@ -32,6 +33,7 @@ export default class World1 {
         this.seaWeedPool = [];
         this.waveFrontPool = [];
         this.waveBackPool = [];
+        this.bubbleEnvPool = [];
     };
 
     static loadSprites(scene) {
@@ -46,7 +48,10 @@ export default class World1 {
         if (!scene.textures.exists(KEYS.KEY_EXTREAMDEEPSEA)) scene.load.image(KEYS.KEY_EXTREAMDEEPSEA, [ExtreamDeepSea, ExtreamDeepSeaN]);
         if (!scene.textures.exists(KEYS.KEY_SEAWEED)) scene.load.spritesheet(KEYS.KEY_SEAWEED, [SeaWeed, SeaWeedN], {
             frameWidth: 42, frameHeight: 99
-        })
+        });
+        if (!scene.textures.exists(KEYS.KEY_BUBBLESENV)) scene.load.spritesheet(KEYS.KEY_BUBBLESENV, BubblesEnv, {
+            frameWidth: 62, frameHeight: 75
+        });
     };
 
     initAnimations () {
@@ -59,6 +64,15 @@ export default class World1 {
             frameRate: 5,
             repeat: -1
         })
+        this.scene.anims.create({
+            key: KEYS.KEY_BUBBLESENV,
+            frames: this.scene.anims.generateFrameNumbers(KEYS.KEY_BUBBLESENV, {
+                start: 0,
+                end: 8,
+            }),
+            frameRate: 3,
+            repeat: -1,
+        });
     };
 
     startSeaweedAnim() {
@@ -67,6 +81,25 @@ export default class World1 {
                 seaweed.anims.play(KEYS.KEY_SEAWEED);
             });
         });
+    };
+
+    startBubbleAnim() {
+        this.bubbleEnvPool.forEach((bubble) => {
+            this.scene.time.delayedCall(bubble.delay, () => {
+                bubble.anims.play(KEYS.KEY_BUBBLESENV);
+            });
+        });
+    };
+
+    genBubblesAndAnims() {
+        let bubbleNumber = 10;
+        for (let i = 0; i < bubbleNumber; i++) {
+            let X = Phaser.Math.Between(0, 3840);
+            let Y = Phaser.Math.Between(600, 2160);
+            let bubble = this.scene.add.sprite(X, Y, KEYS.KEY_BUBBLESENV).setDepth(1);
+            bubble.delay = Phaser.Math.Between(100, 3000)
+            this.bubbleEnvPool.push(bubble);
+        }
     };
     create() {
         this.initAnimations();
@@ -96,6 +129,8 @@ export default class World1 {
             this.seaWeedPool.push(seaweed);
         });
         this.startSeaweedAnim();
+        this.genBubblesAndAnims();
+        this.startBubbleAnim();
     };
 
     update(time, delta) {

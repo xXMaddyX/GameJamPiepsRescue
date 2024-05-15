@@ -68,6 +68,5 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.player.update(time, delta);
         this.world.update(time, delta);
         this.deepHandler();
-        console.log(this.player.uboot.y);
     };
 };
