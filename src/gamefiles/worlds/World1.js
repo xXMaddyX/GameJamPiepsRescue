@@ -99,7 +99,7 @@ export default class World1 {
             let bubble = this.scene.add.sprite(X, Y, KEYS.KEY_BUBBLESENV).setDepth(1);
             bubble.delay = Phaser.Math.Between(100, 3000)
             this.bubbleEnvPool.push(bubble);
-        }
+        };
     };
     create() {
         this.initAnimations();
@@ -153,6 +153,5 @@ export default class World1 {
                 wave.x = calcBackPositionX(1920 * 2);
             };
         });
-        
     };
 };
