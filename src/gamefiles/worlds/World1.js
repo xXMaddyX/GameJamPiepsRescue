@@ -101,16 +101,15 @@ export default class World1 {
             this.bubbleEnvPool.push(bubble);
         };
     };
+    
     create() {
         this.initAnimations();
         World1Config.backgroundPositions.forEach(({x, y, key, alpha, depth}) => {
             let image = this.scene.add.sprite(x, y, key).setPipeline("Light2D").setAlpha(alpha).setDepth(depth);
         });
-
         World1Config.groundPositions.forEach(({x, y, key}) => {
             let ground = this.scene.physics.add.sprite(x, y, key).setPipeline("Light2D");
         });
-
         World1Config.wolkenPosition.forEach(({x, y, key, depth}) => {
             let wolken = this.scene.add.sprite(x, y, key).setDepth(depth);
             this.wolkenPool.push(wolken);
@@ -146,7 +145,6 @@ export default class World1 {
                 wave.x = calcBackPositionX(-1920);
             };
         });
-
         this.waveBackPool.forEach(wave => {
             wave.x -= .25;
             if (wave.x < -940) {

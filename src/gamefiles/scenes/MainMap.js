@@ -1,6 +1,12 @@
 import Phaser from "phaser";
 import World1 from "../worlds/World1";
 import Player from "../player/Player";
+import Collectables from "../collectables/collectables";
+
+import { 
+    TrueConfig,
+    TruePositions,
+} from "../collectables/collectablesConfig";
 
 const KEY_UBOOT = "Uboot";
 
@@ -20,6 +26,7 @@ export default class SceneLvL1 extends Phaser.Scene {
         // Load World Sprites
         World1.loadSprites(this);
         Player.loadSprites(this);
+        Collectables.loadSprites(this);
     }
 
     deepHandler() {
@@ -48,6 +55,13 @@ export default class SceneLvL1 extends Phaser.Scene {
         };
     };
 
+    createChests() {
+        TruePositions.forEach(chest => {
+            let item = new Collectables(this, this.player);
+            item.create(chest, TrueConfig)
+        });
+    };
+
     create() {
         this.physics.world.setBounds(0, 0, this.sceneWidth, this.sceneHeight);
         this.lights.enable();
@@ -61,6 +75,7 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.player.create(200, 530);
         this.player.setFollowCamera(this.sceneWidth, this.sceneHeight);
 
+        this.createChests();
         this.initScene();
     };
 
