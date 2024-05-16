@@ -8,8 +8,6 @@ import {
     TruePositions,
 } from "../collectables/collectablesConfig";
 
-const KEY_UBOOT = "Uboot";
-
 export default class SceneLvL1 extends Phaser.Scene {
     constructor() {
         super("SceneLvL1");
