@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import BaseShip from "../BaseShip/BaseShip";
 import {
     EngineBubbles,
     EngineBubblesN,
@@ -12,10 +13,10 @@ const KEY_ANIM_UBOOT_IDLE = "PlayerUbootIdle";
 const KEY_ENGINEBUBBLES = "EngineBubbles";
 
 export default class Player {
-    constructor(scene, world) {
+    constructor(scene, baseShip) {
         /**@type {Phaser.Scene} */
         this.scene = scene;
-        this.world = world;
+        /**@type {BaseShip} */
         this.direction = "RIGHT";
         this.lightsActive = false;
         this.buttonQisPressed = false;

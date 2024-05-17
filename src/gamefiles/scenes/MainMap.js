@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import World1 from "../worlds/World1";
 import Player from "../player/Player";
 import Collectables from "../collectables/collectables";
+import BaseShipClass from "../BaseShip/BaseShip";
 
 import { 
     TrueConfig,
@@ -25,7 +26,8 @@ export default class SceneLvL1 extends Phaser.Scene {
         World1.loadSprites(this);
         Player.loadSprites(this);
         Collectables.loadSprites(this);
-    }
+        BaseShipClass.loadSprites(this);
+    };
 
     deepHandler() {
         let ubootY = this.player.uboot.y;
@@ -68,9 +70,12 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.world = new World1(this);
         this.world.create();
 
+        this.baseShip = new BaseShipClass(this);
+        this.baseShip.create(1000, 410)
+
         Player.initAnimations(this);
-        this.player = new Player(this);
-        this.player.create(200, 530);
+        this.player = new Player(this, this.baseShip);
+        this.player.create(150, 530);
         this.player.setFollowCamera(this.sceneWidth, this.sceneHeight);
 
         this.createChests();
