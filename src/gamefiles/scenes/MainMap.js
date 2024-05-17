@@ -14,6 +14,7 @@ export default class SceneLvL1 extends Phaser.Scene {
         super("SceneLvL1");
         this.sceneWidth = 3840;
         this.sceneHeight = 2160;
+        this.itemPool = [];
     }
 
     initScene() {
@@ -58,7 +59,13 @@ export default class SceneLvL1 extends Phaser.Scene {
     createChests() {
         TruePositions.forEach(chest => {
             let item = new Collectables(this, this.player);
-            item.create(chest, TrueConfig)
+            item.create(chest, TrueConfig);
+            this.physics.add.overlap(item.item, this.player.ubootGreifer.kran, () => {
+                if (this.player.ubootGreifer.isOpen) {
+                    this.events.emit("takeItem");
+                };
+            });
+            this.itemPool.push(item);
         });
     };
 
@@ -86,5 +93,8 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.player.update(time, delta);
         this.world.update(time, delta);
         this.deepHandler();
+        this.itemPool.forEach(item => {
+            item.update();
+        })
     };
 };

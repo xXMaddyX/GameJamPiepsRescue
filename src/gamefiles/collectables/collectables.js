@@ -38,7 +38,7 @@ export default class Collectables {
     };
 
     create({x, y, itemKey, depth, scale}, animConfig) {
-        this.item = this.scene.add.sprite(x, y, itemKey).setPipeline("Light2D")
+        this.item = this.scene.physics.add.sprite(x, y, itemKey).setPipeline("Light2D")
         .setPipeline("Light2D")
         .setDepth(depth)
         .setScale(scale);
@@ -54,12 +54,12 @@ export default class Collectables {
     };
 
     setItemToPlayer() {
-        this.item.x = this.player.uboot.x;
-        this.item.y = this.player.uboot.y;
+        this.item.x = this.player.ubootGreifer.kran.x;
+        this.item.y = this.player.ubootGreifer.kran.y + 70;
     };
 
     setCollectedStatus() {
-        this.isCollected = !this.isCollected;
+        this.isCollected = true;
     };
 
     update(time, delta) {

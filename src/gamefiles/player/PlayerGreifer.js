@@ -106,7 +106,8 @@ export default class PlayerGreifer {
     create(x, y) {
         this.initAnimations();
         this.kran = this.scene.physics.add.sprite(x, y, null).setPipeline("Light2D").setDepth(0).setScale(2);
-        this.kran.setVisible(true)
+        this.kran.setOffset(8, 78);
+        this.kran.setVisible(true);
     };
 
     animationHandler(newAnimation) {
