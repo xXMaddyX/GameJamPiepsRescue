@@ -6,6 +6,7 @@ import {
     PlayerUboot,
     PlayerUbootN,
 } from "../assetLoader/AssetLoader";
+import PlayerGreifer from "./PlayerGreifer";
 
 const KEY_UBOOT = "PlayerUboot";
 const KEY_ANIM_UBOOT_MOVE = "PlayerUbootMove";
@@ -30,6 +31,7 @@ export default class Player {
         if (!scene.textures.exists(KEY_ENGINEBUBBLES)) scene.load.spritesheet(KEY_ENGINEBUBBLES, [EngineBubbles, EngineBubblesN], {
             frameWidth: 18, frameHeight: 21
         });
+        PlayerGreifer.loadSprites(scene);
     };
     //--------------------------{{{{ ANIMATION LOADER}}}}----------------------------
     static initAnimations(scene) {
@@ -70,12 +72,15 @@ export default class Player {
     };
     //----------------------------{{{{ CREATE SECTION}}}}--------------------------------
     create(x, y) {
-        this.uboot = this.scene.physics.add.sprite(x, y, KEY_UBOOT).setScale(2).setPipeline("Light2D").setDepth(0);
+        this.uboot = this.scene.physics.add.sprite(x, y, KEY_UBOOT).setScale(2).setPipeline("Light2D").setDepth(1);
         this.uboot.setCollideWorldBounds(true)
         this.ubootLight = this.scene.lights.addLight(this.uboot.x + 100, this.uboot.y + 40, 500).setIntensity(1);
         this.ubootLight.setVisible(false);
 
         this.engineBubbles = this.scene.add.sprite(this.uboot.x, this.uboot.y, KEY_ENGINEBUBBLES).setScale(2);
+
+        this.ubootGreifer = new PlayerGreifer(this.scene, this);
+        this.ubootGreifer.create();
 
         this.scene.cameras.main.startFollow(this.uboot);
         this.initKeybord();
@@ -198,5 +203,6 @@ export default class Player {
             //Controls Updater
            this.constrolHandler();
         }
+        this.ubootGreifer.update();
     };
 }
