@@ -27,6 +27,8 @@ export default class PlayerGreifer {
         this.isIdle = true;
         this.isDown = false;
         this.isUp = false;
+        this.isOpen = false;
+        this.isClosed = true;
     }
 
     static loadSprites(scene) {
@@ -72,6 +74,28 @@ export default class PlayerGreifer {
                 repeat: 0,
             });
         };
+        if (!this.scene.anims.exists(KEY_GREIFER_OPEN)) {
+            this.scene.anims.create({
+                key: KEY_GREIFER_OPEN,
+                frames: this.scene.anims.generateFrameNumbers(KEY_GREIFER_OPEN_CLOSE, {
+                    start: 0,
+                    end: 1,
+                }),
+                frameRate: 1,
+                repeat: 0
+            });
+        };
+        if (!this.scene.anims.exists(KEY_GREIFER_CLOSED)) {
+            this.scene.anims.create({
+                key: KEY_GREIFER_CLOSED,
+                frames: this.scene.anims.generateFrameNumbers(KEY_GREIFER_OPEN_CLOSE, {
+                    start: 1,
+                    end: 0,
+                }),
+                frameRate: 5,
+                repeat: 0,
+            });
+        };
     };
 
     matchWithPlayerPos() {
@@ -97,36 +121,64 @@ export default class PlayerGreifer {
             case KEY_GREIFER_ANIM_UP:
                 this.kran.anims.play(KEY_GREIFER_ANIM_UP);
                 break;
-        }
+            case KEY_GREIFER_OPEN:
+                this.kran.anims.play(KEY_GREIFER_OPEN);
+                break;
+            case KEY_GREIFER_CLOSED:
+                this.kran.anims.play(KEY_GREIFER_CLOSED);
+                break;
+        };
         this.currentAnim = newAnimation;
     };
 
-    greiferControls() {
+    greiferControlsUpDown() {
         if (this.player.ButtonS.isDown) {
             this.isUp = false;
             this.isDown = true;
             this.isIdle = false;
         }
-        if (this.player.ButtonW.isDown) {
+        if (this.player.ButtonW.isDown && this.isDown) {
             this.isUp = true;
             this.isDown = false;
             this.isIdle = false;
+            this.isClosed = true;
+            this.isOpen = false
+        }  
+    }
+
+    handlerUpDown() {
+        if (this.isIdle && !this.isOpen) {
+            this.animationHandler(KEY_GREIFER_UP_IDLE);
+        }
+        if (this.isDown && !this.isOpen) {
+            this.animationHandler(KEY_GREIFER_ANIM_DOWN);
+        }
+        if (this.isUp && !this.isOpen) {
+            this.animationHandler(KEY_GREIFER_ANIM_UP);
+        }
+    }
+
+    controlsOpenClose() {
+        if (this.isOpen) {
+            this.animationHandler(KEY_GREIFER_OPEN);
+        }
+    }
+
+    handlerOpenClose() {
+        if (this.isDown && this.player.ButtonE.isDown) {
+            this.isOpen = true;
+            this.isIdle = false;
+            this.isUp = false;
         }
     }
 
     update(time, delta) {
         if (this.kran && this.kran.body) {
             this.matchWithPlayerPos();
-            this.greiferControls();
-            if (this.isIdle) {
-                this.animationHandler(KEY_GREIFER_UP_IDLE);
-            }
-            if (this.isDown) {
-                this.animationHandler(KEY_GREIFER_ANIM_DOWN);
-            }
-            if (this.isUp) {
-                this.animationHandler(KEY_GREIFER_ANIM_UP);
-            }
+            this.greiferControlsUpDown();
+            this.controlsOpenClose();
+            this.handlerUpDown();
+            this.handlerOpenClose();
         }
     };
 };
