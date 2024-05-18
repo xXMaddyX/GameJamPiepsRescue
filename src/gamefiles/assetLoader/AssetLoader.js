@@ -43,6 +43,10 @@ import Chest1 from '../assets/envAssets/Chest.png';
 import Chest1N from '../assets/envAssets/Chest_n.png';
 import SeaWeed from '../assets/envAssets/SeaWeed.png';
 import SeaWeedN from '../assets/envAssets/SeaWeed_n.png';
+import FischBunt from '../assets/envAssets/FischeBunt.png';
+import FischBuntN from '../assets/envAssets/FischeBunt_n.png';
+import FischSchwarm from '../assets/envAssets/FischSchwarm.png';
+import FischSchwarmN from '../assets/envAssets/FischSchwarm_n.png';
 
 
 export {
@@ -86,4 +90,8 @@ export {
     SeaWeed,
     SeaWeedN,
     BubblesEnv,
+    FischBunt,
+    FischBuntN,
+    FischSchwarm,
+    FischSchwarmN,
 }

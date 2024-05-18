@@ -8,6 +8,8 @@ import {
     TrueConfig,
     TruePositions,
 } from "../collectables/collectablesConfig";
+import FuscheBuntClass from "../envAnimals/fischeBunt";
+import FischSchwarmClass from "../envAnimals/fischSchwarm";
 
 export default class SceneLvL1 extends Phaser.Scene {
     constructor() {
@@ -29,6 +31,8 @@ export default class SceneLvL1 extends Phaser.Scene {
         Player.loadSprites(this);
         Collectables.loadSprites(this);
         BaseShipClass.loadSprites(this);
+        FuscheBuntClass.loadSprites(this);
+        FischSchwarmClass.loadSprites(this);
     };
 
     deepHandler() {
@@ -98,6 +102,12 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.player.create(150, 530); //530 Default
         this.player.setFollowCamera(this.sceneWidth, this.sceneHeight);
 
+        this.fischeBunt = new FuscheBuntClass(this);
+        this.fischeBunt.create();
+
+        this.fischSchwarm = new FischSchwarmClass(this);
+        this.fischSchwarm.create();
+
         this.createChests();
         this.initScene();
         this.addcollidersGround();
@@ -110,5 +120,7 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.itemPool.forEach(item => {
             item.update();
         })
+        this.fischeBunt.update();
+        this.fischSchwarm.update();
     };
 };

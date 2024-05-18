@@ -93,10 +93,10 @@ export default class World1 {
     };
 
     genBubblesAndAnims() {
-        let bubbleNumber = 10;
+        let bubbleNumber = 30;
         for (let i = 0; i < bubbleNumber; i++) {
             let X = Phaser.Math.Between(0, 3840);
-            let Y = Phaser.Math.Between(600, 2160);
+            let Y = Phaser.Math.Between(600, 3240);
             let bubble = this.scene.add.sprite(X, Y, KEYS.KEY_BUBBLESENV).setDepth(1);
             bubble.delay = Phaser.Math.Between(100, 3000)
             this.bubbleEnvPool.push(bubble);
