@@ -105,15 +105,15 @@ const World1Config = {
     ],
     colliderPositionsRiffCircles: [
         //Left Riff
-        {x: -430, y: 1050, width: 0, height: 0},
-        {x: -310, y: 1350, width: 0, height: 0},
-        {x: -355, y: 1550, width: 0, height: 0},
-        {x: -325, y: 1690, width: 0, height: 0},
-        {x: -155, y: 2100, width: 0, height: 0},
-        {x: -585, y: 2750, width: 0, height: 0},
+        {x: 0, y: 1028, width: 190, height: 348},
+        {x: 0, y: 1376, width: 268, height: 245},
+        {x: 0, y: 1725, width: 154, height: 515},
+        {x: 155, y: 1791, width: 81, height: 222},
+        {x: 0, y: 2515, width: 250, height: 275},
+        {x: 0, y: 2965, width: 296, height: 250},
         
         //secondRiff
-        {x: 750, y: 1000, width: 0, height: 0},
+        {x: 657, y: 1030, width: 535, height: 385},
         {x: 670, y: 1330, width: 0, height: 0},
         {x: 800, y: 1530, width: 0, height: 0},
         {x: 860, y: 1830, width: 0, height: 0},
