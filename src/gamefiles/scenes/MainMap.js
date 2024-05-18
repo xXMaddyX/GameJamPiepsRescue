@@ -105,7 +105,7 @@ export default class SceneLvL1 extends Phaser.Scene {
 
         Player.initAnimations(this);
         this.player = new Player(this, this.baseShip);
-        this.player.create(500, 2500); //530 Default
+        this.player.create(1800, 1500); //530 Default
         this.player.setFollowCamera(this.sceneWidth, this.sceneHeight);
 
         this.fischeBunt = new FuscheBuntClass(this);
