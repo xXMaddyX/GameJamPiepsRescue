@@ -11,7 +11,7 @@ const TrueConfig = {
     repeat: -1,
 };
 const TruePositions = [
-    {x: 1200, y: 1055 * 2, depth: 1, scale: 2}
+    {x: 1200, y: 1050 * 3, depth: 1, scale: 2}
 ];
 
 const Taucher = {

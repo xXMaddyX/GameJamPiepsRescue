@@ -41,7 +41,8 @@ export default class Collectables {
         this.item = this.scene.physics.add.sprite(x, y, itemKey).setPipeline("Light2D")
         .setPipeline("Light2D")
         .setDepth(depth)
-        .setScale(scale);
+        .setScale(scale)
+        .setGravityY(200)
 
         //Anim Config
         this.intitAnimations(animConfig)
@@ -60,6 +61,7 @@ export default class Collectables {
 
     setCollectedStatus() {
         this.isCollected = true;
+        this.item.setGravityY(0);
     };
 
     update(time, delta) {
@@ -67,6 +69,10 @@ export default class Collectables {
             if (this.isCollected) {
                 this.setItemToPlayer();
             };
+            if (this.player.ubootGreifer.isUp) {
+                this.isCollected = false;
+                this.item.setGravityY(100)
+            }
         };
     };
 };

@@ -29,6 +29,7 @@ export default class World1 {
     constructor(scene) {
         /**@type {Phaser.Scene} */
         this.scene = scene;
+        this.groundPool = [];
         this.wolkenPool = [];
         this.seaWeedPool = [];
         this.waveFrontPool = [];
@@ -109,6 +110,9 @@ export default class World1 {
         });
         World1Config.groundPositions.forEach(({x, y, key}) => {
             let ground = this.scene.physics.add.sprite(x, y, key).setPipeline("Light2D");
+            ground.body.setImmovable();
+            ground.setOffset(ground.body.offset.x, 64)
+            this.groundPool.push(ground);
         });
         World1Config.wolkenPosition.forEach(({x, y, key, depth}) => {
             let wolken = this.scene.add.sprite(x, y, key).setDepth(depth);
@@ -127,6 +131,7 @@ export default class World1 {
             seaweed.delay = delay;
             this.seaWeedPool.push(seaweed);
         });
+
         this.startSeaweedAnim();
         this.genBubblesAndAnims();
         this.startBubbleAnim();

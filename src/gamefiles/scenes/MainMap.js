@@ -13,8 +13,9 @@ export default class SceneLvL1 extends Phaser.Scene {
     constructor() {
         super("SceneLvL1");
         this.sceneWidth = 3840;
-        this.sceneHeight = 2160;
+        this.sceneHeight = 3240;
         this.itemPool = [];
+        this.colliderPool = [];
     }
 
     initScene() {
@@ -36,8 +37,10 @@ export default class SceneLvL1 extends Phaser.Scene {
 
         if (ubootY > 1100 && ubootY < 1500) {
             targetColor = { r: 170, g: 170, b: 170 }; // 0xaaaaaa
-        } else if (ubootY > 1500 && ubootY < 3000) {
+        } else if (ubootY > 1500 && ubootY < 2000) {
             targetColor = { r: 102, g: 102, b: 102 }; // 0x666666
+        } else if (ubootY > 2000) {
+            targetColor = { r: 40, g: 40, b: 40 };
         } else if (ubootY <= 1100) {
             targetColor = { r: 204, g: 204, b: 204 }; // 0xcccccc
         };
@@ -69,6 +72,16 @@ export default class SceneLvL1 extends Phaser.Scene {
         });
     };
 
+    addcollidersGround() {
+        this.world.groundPool.forEach(ground => {
+            let groundCollider = this.physics.add.collider(ground, this.player.uboot);
+            this.colliderPool.push(groundCollider);
+            this.itemPool.forEach(item => {
+                this.physics.add.collider(item.item, ground);
+            });
+        });
+    }
+
     create() {
         this.physics.world.setBounds(0, 0, this.sceneWidth, this.sceneHeight);
         this.lights.enable();
@@ -82,11 +95,12 @@ export default class SceneLvL1 extends Phaser.Scene {
 
         Player.initAnimations(this);
         this.player = new Player(this, this.baseShip);
-        this.player.create(150, 530);
+        this.player.create(150, 530); //530 Default
         this.player.setFollowCamera(this.sceneWidth, this.sceneHeight);
 
         this.createChests();
         this.initScene();
+        this.addcollidersGround();
     };
 
     update(time, delta) {
