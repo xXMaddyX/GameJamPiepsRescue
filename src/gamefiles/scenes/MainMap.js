@@ -88,7 +88,10 @@ export default class SceneLvL1 extends Phaser.Scene {
 
     addRiffColliders() {
         this.world.riffColliderPool.forEach(riff => {
-            let riffCollider = this.physics.add.collider(riff, this.player.uboot)
+            let riffCollider = this.physics.add.collider(riff, this.player.uboot);
+            this.itemPool.forEach(item => {
+                let itemCollider = this.physics.add.collider(riff, item.item)
+            })
         });
     };
 
@@ -105,7 +108,7 @@ export default class SceneLvL1 extends Phaser.Scene {
 
         Player.initAnimations(this);
         this.player = new Player(this, this.baseShip);
-        this.player.create(1800, 1500); //530 Default
+        this.player.create(150, 3000); //530 Default
         this.player.setFollowCamera(this.sceneWidth, this.sceneHeight);
 
         this.fischeBunt = new FuscheBuntClass(this);
