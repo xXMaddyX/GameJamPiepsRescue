@@ -69,7 +69,7 @@ export default class SceneLvL1 extends Phaser.Scene {
             item.create(chest, TrueConfig);
             this.physics.add.overlap(item.item, this.player.ubootGreifer.kran, () => {
                 if (this.player.ubootGreifer.isOpen) {
-                    this.events.emit("takeItem");
+                    item.takeItem();
                 };
             });
             this.itemPool.push(item);
@@ -84,7 +84,13 @@ export default class SceneLvL1 extends Phaser.Scene {
                 this.physics.add.collider(item.item, ground);
             });
         });
-    }
+    };
+
+    addRiffColliders() {
+        this.world.riffColliderPool.forEach(riff => {
+            let riffCollider = this.physics.add.collider(riff, this.player.uboot)
+        });
+    };
 
     create() {
         this.physics.world.setBounds(0, 0, this.sceneWidth, this.sceneHeight);
@@ -99,7 +105,7 @@ export default class SceneLvL1 extends Phaser.Scene {
 
         Player.initAnimations(this);
         this.player = new Player(this, this.baseShip);
-        this.player.create(2000, 1500); //530 Default
+        this.player.create(150, 530); //530 Default
         this.player.setFollowCamera(this.sceneWidth, this.sceneHeight);
 
         this.fischeBunt = new FuscheBuntClass(this);
@@ -111,6 +117,7 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.createChests();
         this.initScene();
         this.addcollidersGround();
+        this.addRiffColliders();
     };
 
     update(time, delta) {

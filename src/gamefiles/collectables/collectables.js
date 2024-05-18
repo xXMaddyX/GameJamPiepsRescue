@@ -23,7 +23,6 @@ export default class Collectables {
 
     intitAnimations({animKey, startFrame, endFrame, frameRate, repeat}) {
         this.animkey = animKey;
-        console.log(animKey, startFrame, endFrame, frameRate, repeat)
         if (!this.scene.anims.exists(this.animkey)) {
             this.scene.anims.create({
                 key: animKey,
@@ -47,11 +46,10 @@ export default class Collectables {
         //Anim Config
         this.intitAnimations(animConfig)
         this.item.anims.play(this.animkey)
-
-        //Handler for ItemGrab
-        this.scene.events.on("takeItem", () => {
-            this.setCollectedStatus();
-        });
+    };
+    
+    takeItem() {
+        this.setCollectedStatus();
     };
 
     setItemToPlayer() {

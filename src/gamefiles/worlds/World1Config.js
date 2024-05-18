@@ -105,30 +105,27 @@ const World1Config = {
     ],
     colliderPositionsRiffCircles: [
         //Left Riff
-        {x: -430, y: 1050, radius: 350},
-        {x: -310, y: 1350, radius: 250},
-        {x: -355, y: 1550, radius: 250},
-        {x: -325, y: 1690, radius: 250},
-        {x: -155, y: 2100, radius: 150},
-        {x: -585, y: 2750, radius: 350},
+        {x: -430, y: 1050, width: 0, height: 0},
+        {x: -310, y: 1350, width: 0, height: 0},
+        {x: -355, y: 1550, width: 0, height: 0},
+        {x: -325, y: 1690, width: 0, height: 0},
+        {x: -155, y: 2100, width: 0, height: 0},
+        {x: -585, y: 2750, width: 0, height: 0},
         
         //secondRiff
-        {x: 750, y: 1000, radius: 350},
-        {x: 670, y: 1330, radius: 150},
-        {x: 800, y: 1530, radius: 250},
-        {x: 860, y: 1830, radius: 250},
-        {x: 720, y: 2000, radius: 380},
-        {x: 640, y: 2100, radius: 380},
-        {x: 760, y: 2100, radius: 380},
+        {x: 750, y: 1000, width: 0, height: 0},
+        {x: 670, y: 1330, width: 0, height: 0},
+        {x: 800, y: 1530, width: 0, height: 0},
+        {x: 860, y: 1830, width: 0, height: 0},
+        {x: 720, y: 2000, width: 0, height: 0},
+        {x: 640, y: 2100, width: 0, height: 0},
+        {x: 760, y: 2100, width: 0, height: 0},
 
         //third Riff
-        {x: 1875, y: 1040, radius: 100},
-        {x: 2130, y: 1020, radius: 100},
-        {x: 2030, y: 1100, radius: 200},
-        {x: 1960, y: 1450, radius: 200},
-    ],
-    colliderPositionsRiffRectangle: [
-
+        {x: 1875, y: 1040, width: 0, height: 0},
+        {x: 2130, y: 1020, width: 0, height: 0},
+        {x: 2030, y: 1100, width: 0, height: 0},
+        {x: 1960, y: 1450, width: 0, height: 0},
     ]
 }
 

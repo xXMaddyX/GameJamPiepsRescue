@@ -112,15 +112,15 @@ export default class World1 {
     };
 
     addColliderCircle() {
-        World1Config.colliderPositionsRiffCircles.forEach(({x, y, radius}) => {
+        World1Config.colliderPositionsRiffCircles.forEach(({x, y, width, height}) => {
             let collider = this.scene.physics.add.sprite(x, y, null).setVisible(false)
-            collider.setCircle(radius);
+            collider.body.width = width;
+            collider.body.height = height;
+            collider.body.setImmovable(true);
             this.riffColliderPool.push(collider)
         });
     };
 
-
-    
     create() {
         this.initPools();
         this.initAnimations();
