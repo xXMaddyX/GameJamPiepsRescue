@@ -22,6 +22,8 @@ import {
     WaveFront,
     WaveBack,
     BubblesEnv,
+    RiffOne,
+    RiffOneN,
 } from '../assetLoader/AssetLoader.js';
 
 
@@ -29,12 +31,17 @@ export default class World1 {
     constructor(scene) {
         /**@type {Phaser.Scene} */
         this.scene = scene;
+    };
+    
+    initPools() {
         this.groundPool = [];
         this.wolkenPool = [];
         this.seaWeedPool = [];
         this.waveFrontPool = [];
         this.waveBackPool = [];
         this.bubbleEnvPool = [];
+        this.RiffPool = []; 
+        this.riffColliderPool = [];
     };
 
     static loadSprites(scene) {
@@ -47,6 +54,7 @@ export default class World1 {
         if (!scene.textures.exists(KEYS.KEY_MIDDLESEA)) scene.load.image(KEYS.KEY_MIDDLESEA, [MiddelSea, MiddelSeaN]);
         if (!scene.textures.exists(KEYS.KEY_DEEPSEA)) scene.load.image(KEYS.KEY_DEEPSEA, [DeepSea, DeepSeaN]);
         if (!scene.textures.exists(KEYS.KEY_EXTREAMDEEPSEA)) scene.load.image(KEYS.KEY_EXTREAMDEEPSEA, [ExtreamDeepSea, ExtreamDeepSeaN]);
+        if (!scene.textures.exists(KEYS.KEY_RIFFONE)) scene.load.image(KEYS.KEY_RIFFONE, [RiffOne, RiffOneN]);
         if (!scene.textures.exists(KEYS.KEY_SEAWEED)) scene.load.spritesheet(KEYS.KEY_SEAWEED, [SeaWeed, SeaWeedN], {
             frameWidth: 42, frameHeight: 99
         });
@@ -102,8 +110,19 @@ export default class World1 {
             this.bubbleEnvPool.push(bubble);
         };
     };
+
+    addColliderCircle() {
+        World1Config.colliderPositionsRiffCircles.forEach(({x, y, radius}) => {
+            let collider = this.scene.physics.add.sprite(x, y, null).setVisible(false)
+            collider.setCircle(radius);
+            this.riffColliderPool.push(collider)
+        });
+    };
+
+
     
     create() {
+        this.initPools();
         this.initAnimations();
         World1Config.backgroundPositions.forEach(({x, y, key, alpha, depth}) => {
             let image = this.scene.add.sprite(x, y, key).setPipeline("Light2D").setAlpha(alpha).setDepth(depth);
@@ -127,14 +146,20 @@ export default class World1 {
             this.waveBackPool.push(waveBack);
         });
         World1Config.seaWeedPosition.forEach(({x, y, key, depth, scale, delay}) => {
-            let seaweed = this.scene.physics.add.sprite(x, y, key).setPipeline("Light2D").setDepth(depth).setScale(scale);
+            let seaweed = this.scene.add.sprite(x, y, key).setPipeline("Light2D").setDepth(depth).setScale(scale);
             seaweed.delay = delay;
             this.seaWeedPool.push(seaweed);
         });
+        World1Config.riff1Positions.forEach(({x, y, key, depth, scale}) => {
+            let riffone = this.scene.add.sprite(x, y, key).setPipeline("Light2D").setDepth(depth).setScale(scale);
+            this.RiffPool.push(riffone);
+        });
+
 
         this.startSeaweedAnim();
         this.genBubblesAndAnims();
         this.startBubbleAnim();
+        this.addColliderCircle();
     };
 
     update(time, delta) {

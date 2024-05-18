@@ -5,5 +5,4 @@ const KEYS = {
 
 export {
     KEYS,
-    fischeBuntPositions
 }

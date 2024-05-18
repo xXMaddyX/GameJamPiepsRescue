@@ -17,6 +17,7 @@ const KEYS = {
     KEY_WAVEBACK: "WaveBackLvl1",
     KEY_SEAWEED: "SeaWeed",
     KEY_BUBBLESENV: "BubblesEnv",
+    KEY_RIFFONE: "Riff1",
 };
 
 const World1Config = {
@@ -96,6 +97,38 @@ const World1Config = {
         {x: 3720, y: 1065 *3, key: KEYS.KEY_SEAWEED, depth: 2, scale: 1, delay: 600},
         {x: 3730, y: 1063 *3, key: KEYS.KEY_SEAWEED, depth: 2, scale: 1, delay: 1500},
         {x: 3740, y: 1061 *3, key: KEYS.KEY_SEAWEED, depth: 2, scale: 1, delay: 3000},
+    ],
+    riff1Positions: [
+        {x: 550, y: 1050 *3, key: KEYS.KEY_RIFFONE, depth: 2, scale:2},
+        {x: 1550, y: 1050 *3, key: KEYS.KEY_RIFFONE, depth: 2, scale:2},
+        {x: 3850, y: 1050 *4, key: KEYS.KEY_RIFFONE, depth: 2, scale:2},
+    ],
+    colliderPositionsRiffCircles: [
+        //Left Riff
+        {x: -430, y: 1050, radius: 350},
+        {x: -310, y: 1350, radius: 250},
+        {x: -355, y: 1550, radius: 250},
+        {x: -325, y: 1690, radius: 250},
+        {x: -155, y: 2100, radius: 150},
+        {x: -585, y: 2750, radius: 350},
+        
+        //secondRiff
+        {x: 750, y: 1000, radius: 350},
+        {x: 670, y: 1330, radius: 150},
+        {x: 800, y: 1530, radius: 250},
+        {x: 860, y: 1830, radius: 250},
+        {x: 720, y: 2000, radius: 380},
+        {x: 640, y: 2100, radius: 380},
+        {x: 760, y: 2100, radius: 380},
+
+        //third Riff
+        {x: 1875, y: 1040, radius: 100},
+        {x: 2130, y: 1020, radius: 100},
+        {x: 2030, y: 1100, radius: 200},
+        {x: 1960, y: 1450, radius: 200},
+    ],
+    colliderPositionsRiffRectangle: [
+
     ]
 }
 

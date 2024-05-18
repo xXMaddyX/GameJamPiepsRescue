@@ -31,6 +31,8 @@ import WaveBack from '../assets/Sea/waveBack.png';
 import Koralle from '../assets/envAssets/Koralle.png';
 import KoralleN from '../assets/envAssets/Koralle_n.png';
 import BubblesEnv from '../assets/envAssets/BubblesEnv.png';
+import RiffOne from '../assets/riffe/Riff1.png';
+import RiffOneN from '../assets/riffe/Riff1_n.png';
 
 //Base Ship
 import BaseShip from '../assets/BaseShip/schiff.png';
@@ -94,4 +96,6 @@ export {
     FischBuntN,
     FischSchwarm,
     FischSchwarmN,
-}
+    RiffOne,
+    RiffOneN,
+};

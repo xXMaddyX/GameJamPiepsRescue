@@ -13,8 +13,8 @@ export default new Phaser.Game({
         default: 'arcade',
         arcade: {
             gravity: -200,
-            //debug: true,
-        }
+            debug: true,
+        },
     },
     scene: [
         new SceneLvL1(this)
