@@ -73,7 +73,9 @@ export default class Player {
     //----------------------------{{{{ CREATE SECTION}}}}--------------------------------
     create(x, y) {
         this.uboot = this.scene.physics.add.sprite(x, y, KEY_UBOOT).setScale(2).setPipeline("Light2D").setDepth(1);
-        this.uboot.setCollideWorldBounds(true)
+        this.uboot.setCollideWorldBounds(true);
+        this.uboot.setBodySize(this.uboot.body.width, 63);
+        this.uboot.body.offset.y = 30;
         this.ubootLight = this.scene.lights.addLight(this.uboot.x + 100, this.uboot.y + 40, 500).setIntensity(1);
         this.ubootLight.setVisible(false);
 
