@@ -114,12 +114,12 @@ const World1Config = {
         
         //secondRiff
         {x: 657, y: 1030, width: 535, height: 385},
-        {x: 670, y: 1330, width: 0, height: 0},
-        {x: 800, y: 1530, width: 0, height: 0},
-        {x: 860, y: 1830, width: 0, height: 0},
-        {x: 720, y: 2000, width: 0, height: 0},
-        {x: 640, y: 2100, width: 0, height: 0},
-        {x: 760, y: 2100, width: 0, height: 0},
+        {x: 1200, y: 1076, width: 180, height: 310},
+        {x: 785, y: 1420, width: 560, height: 180},
+        {x: 815, y: 1650, width: 585, height: 300},
+        {x: 610, y: 1605, width: 200, height: 400},
+        {x: 610, y: 2005, width: 680, height: 370},
+        {x: 680, y: 2380, width: 740, height: 370},
 
         //third Riff
         {x: 1875, y: 1040, width: 0, height: 0},
