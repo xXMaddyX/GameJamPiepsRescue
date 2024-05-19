@@ -1,0 +1,103 @@
+import Phaser from "phaser";
+import Player from "../player/Player";
+import { TintiIdle, TintiIdleN } from "../assetLoader/AssetLoader";
+
+const KEY_TINTI_IDLE = "TintiIdle";
+const KEY_TINTI_IDLE_ANIM = "TintiIdleAnim";
+
+const PATROL_DISTANCE = 2000;
+const PLAYER_DEDECTION_RANGE = 400;
+const TINTI_SPEED = 100;
+
+export default class TintiClass {
+    constructor(scene, player) {
+        /**@type {Phaser.Scene} */
+        this.scene = scene;
+        /**@type {Player} */
+        this.player = player;
+        this.onPatrol = true;
+        this.isChasingPlayer = false;
+        this.patrolDirection = 1;
+    };
+
+    static loadSprites(scene) {
+        if (!scene.textures.exists(KEY_TINTI_IDLE)) scene.load.spritesheet(KEY_TINTI_IDLE, [TintiIdle, TintiIdleN], {
+            frameWidth: 46, frameHeight: 54,
+        });
+    };
+
+    initAnimations() {
+        if (!this.scene.anims.exists(KEY_TINTI_IDLE_ANIM)) {
+            this.scene.anims.create({
+                key: KEY_TINTI_IDLE_ANIM,
+                frames: this.scene.anims.generateFrameNumbers(KEY_TINTI_IDLE, {
+                    start: 0,
+                    end: 1
+                }),
+                frameRate: 3,
+                repeat: -1
+            });
+        };
+    };
+
+    create(x, y, depth, scale) {
+        this.initAnimations();
+        this.tinti = this.scene.physics.add.sprite(x, y, KEY_TINTI_IDLE).setDepth(depth).setScale(scale).setPipeline("Light2D");
+        this.tinti.anims.play(KEY_TINTI_IDLE_ANIM);
+
+        this.tintiLight = this.scene.lights.addLight(this.tinti.x, this.tinti.y);
+        this.tintiLight.setIntensity(0.5);
+
+        this.startX = x;
+        this.endX = x + PATROL_DISTANCE;
+        this.tinti.setVelocityX(this.patrolDirection * TINTI_SPEED);
+    };
+
+    directionHandler() {
+        if (this.patrolDirection === 1) {
+            this.tinti.flipX = true
+        };
+        if (this.patrolDirection === -1) {
+            this.tinti.flipX = false;
+        };
+    };
+
+    tintiLightHandler() {
+        this.tintiLight.x = this.tinti.x;
+        this.tintiLight.y = this.tinti.y;
+    };
+
+    patrol() {
+        if (this.patrolDirection === 1 && this.tinti.x >= this.endX) {
+            this.patrolDirection = -1;
+        } else if (this.patrolDirection === -1 && this.tinti.x <= this.startX) {
+            this.patrolDirection = 1;
+        }
+
+        this.tinti.setVelocityX(this.patrolDirection * TINTI_SPEED);
+    };
+
+    chaseStatusHandler(distanceToPlayer) {
+        if (distanceToPlayer < PLAYER_DEDECTION_RANGE) {
+            this.isChasingPlayer = true;
+        } else {
+            this.isChasingPlayer = false;
+        };
+    };
+
+    update(time, delta) {
+        let distanceToPlayer = Phaser.Math.Distance.Between(
+            this.tinti.x, this.tinti.y,
+            this.player.uboot.x, this.player.uboot.y
+        );
+
+        this.chaseStatusHandler(distanceToPlayer);
+        this.directionHandler();
+        this.tintiLightHandler();
+        if (this.isChasingPlayer) {
+            this.scene.physics.moveToObject(this.tinti, this.player.uboot, TINTI_SPEED);
+        } else {
+            this.patrol();
+        };
+    };
+};

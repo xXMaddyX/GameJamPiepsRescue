@@ -64,6 +64,12 @@ import FischBuntN from '../assets/envAssets/FischeBunt_n.png';
 import FischSchwarm from '../assets/envAssets/FischSchwarm.png';
 import FischSchwarmN from '../assets/envAssets/FischSchwarm_n.png';
 
+//Tinti Monster
+import TintiIdle from '../assets/monster/Tinti.png';
+import TintiIdleN from '../assets/monster/Tinti_n.png';
+import TintiAttack from '../assets/monster/TintiAttack.png';
+import TintiAttackN from '../assets/monster/TintiAttack_n.png';
+
 
 export {
     //Audio
@@ -123,4 +129,9 @@ export {
     FischSchwarmN,
     RiffOne,
     RiffOneN,
+    //Tinti Monster
+    TintiIdle,
+    TintiIdleN,
+    TintiAttack, 
+    TintiAttackN,
 };

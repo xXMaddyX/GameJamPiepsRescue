@@ -3,21 +3,23 @@ import World1 from "../worlds/World1";
 import Player from "../player/Player";
 import Collectables from "../collectables/collectables";
 import BaseShipClass from "../BaseShip/BaseShip";
+import { TintiPositions } from "../Monster/Tinti.Config";
 
 import { 
     TrueConfig,
     TruePositions,
 } from "../collectables/collectablesConfig";
+
 import FuscheBuntClass from "../envAnimals/fischeBunt";
 import FischSchwarmClass from "../envAnimals/fischSchwarm";
 import Ui from "../UI/Ui";
+import TintiClass from "../Monster/Tinti";
 
 export default class SceneLvL1 extends Phaser.Scene {
     constructor() {
         super("SceneLvL1");
         this.sceneWidth = 3840;
         this.sceneHeight = 3240;
-        this.colliderPool = [];
     }
     
     initScene() {
@@ -25,6 +27,7 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.currentColor = { r: 204, g: 204, b: 204 };
         this.itemPool = [];
         this.colliderPool = [];
+        this.tintiPool = []
     }
 
     resetScene() {
@@ -33,6 +36,9 @@ export default class SceneLvL1 extends Phaser.Scene {
         });
         this.colliderPool.forEach(collider => {
             collider.destroy();
+        });
+        this.tintiPool.forEach(tinti => {
+            tinti.destroy();
         })
     }
 
@@ -45,6 +51,7 @@ export default class SceneLvL1 extends Phaser.Scene {
         FuscheBuntClass.loadSprites(this);
         FischSchwarmClass.loadSprites(this);
         Ui.loadSprites(this);
+        TintiClass.loadSprites(this);
     };
 
     deepHandler() {
@@ -119,7 +126,17 @@ export default class SceneLvL1 extends Phaser.Scene {
                 console.log("IS Triggerd")
             })
         })
-    }
+    };
+
+    createTintis() {
+        TintiPositions.forEach(({x, y, depth, scale, timeToSpawn}) => {
+            let newTinti = new TintiClass(this, this.player);
+            this.time.delayedCall(timeToSpawn, () => {
+                newTinti.create(x, y, depth, scale);
+                this.tintiPool.push(newTinti);
+            });
+        });
+    };
 
     initUI() {
         this.UI = new Ui(this);
@@ -155,6 +172,7 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.addcollidersGround();
         this.addRiffColliders();
         this.addItemDeliverCollider();
+        this.createTintis();
     };
 
     update(time, delta) {
@@ -166,5 +184,9 @@ export default class SceneLvL1 extends Phaser.Scene {
         })
         this.fischeBunt.update();
         this.fischSchwarm.update();
+
+        this.tintiPool.forEach(tinti => {
+            tinti.update();
+        })
     };
 };
