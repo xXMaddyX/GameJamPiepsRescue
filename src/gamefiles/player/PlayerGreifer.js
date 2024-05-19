@@ -149,6 +149,15 @@ export default class PlayerGreifer {
         }  
     }
 
+    resetGreifer() {
+        this.isUp = true;
+        this.isDown = false;
+        this.isIdle = false;
+        this.isClosed = true;
+        this.isOpen = false;
+        this.player.ubootGreifer.isCarrying = false;
+    };
+
     handlerUpDown() {
         if (this.isIdle && !this.isOpen) {
             this.animationHandler(KEY_GREIFER_UP_IDLE);

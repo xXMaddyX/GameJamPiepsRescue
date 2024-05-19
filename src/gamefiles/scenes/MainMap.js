@@ -15,13 +15,14 @@ import Ui from "../UI/Ui";
 export default class SceneLvL1 extends Phaser.Scene {
     constructor() {
         super("SceneLvL1");
+        this.sceneWidth = 3840;
+        this.sceneHeight = 3240;
+        this.colliderPool = [];
     }
     
     initScene() {
         this.timer = 0;
         this.currentColor = { r: 204, g: 204, b: 204 };
-        this.sceneWidth = 3840;
-        this.sceneHeight = 3240;
         this.itemPool = [];
         this.colliderPool = [];
     }
@@ -106,6 +107,20 @@ export default class SceneLvL1 extends Phaser.Scene {
         });
     };
 
+    addItemDeliverCollider() {
+        let itemCollider = this.physics.add.sprite(50, 700, null).setVisible(false);
+        itemCollider.body.width = 300;
+        itemCollider.body.height = 100;
+        this.itemPool.forEach(item => {
+            this.physics.add.overlap(item.item, itemCollider, () => {
+                item.isCollected = false;
+                item.item.destroy();
+                this.player.ubootGreifer.resetGreifer();
+                console.log("IS Triggerd")
+            })
+        })
+    }
+
     initUI() {
         this.UI = new Ui(this);
         this.UI.create();
@@ -139,6 +154,7 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.initUI();
         this.addcollidersGround();
         this.addRiffColliders();
+        this.addItemDeliverCollider();
     };
 
     update(time, delta) {

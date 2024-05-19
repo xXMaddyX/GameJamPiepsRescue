@@ -13,7 +13,9 @@ const TrueConfig = {
 const TruePositions = [
     {x: 1500, y: 1050 * 3, depth: 1, scale: 2},
     {x: 500, y: 1050 * 3, depth: 1, scale: 2},
-    {x: 2500, y: 1050 * 3, depth: 1, scale: 2}
+    {x: 2500, y: 1050 * 3, depth: 1, scale: 2},
+    {x: 800, y: 500, depth: 1, scale: 2},
+    {x: 1200, y: 500, depth: 1, scale: 2},
 ];
 
 const Taucher = {
