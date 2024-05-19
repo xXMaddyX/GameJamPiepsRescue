@@ -122,10 +122,21 @@ const World1Config = {
         {x: 680, y: 2380, width: 740, height: 370},
 
         //third Riff
-        {x: 1875, y: 1040, width: 0, height: 0},
-        {x: 2130, y: 1020, width: 0, height: 0},
-        {x: 2030, y: 1100, width: 0, height: 0},
-        {x: 1960, y: 1450, width: 0, height: 0},
+        {x: 1790, y: 1125, width: 585, height: 280},
+        {x: 1960, y: 1430, width: 385, height: 200},
+        {x: 1960, y: 1640, width: 435, height: 310},
+        {x: 1810, y: 1800, width: 485, height: 290},
+        {x: 1910, y: 2100, width: 360, height: 250},
+        {x: 1860, y: 2375, width: 565, height: 390},
+        {x: 2031, y: 2770, width: 300, height: 310},
+        {x: 2031, y: 2770, width: 300, height: 310},
+
+        //forth Riff
+        {x: 2955, y: 2075, width: 533, height: 350},
+        {x: 3080, y: 2213, width: 490, height: 458},
+        {x: 2910, y: 2413, width: 500, height: 458},
+        {x: 3115, y: 2842, width: 420, height: 220},
+        {x: 2910, y: 3051, width: 550, height: 220},
     ]
 }
 
