@@ -200,5 +200,6 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.tintiPool.forEach(tinti => {
             tinti.update();
         });
+        this.UI.update();
     };
 };

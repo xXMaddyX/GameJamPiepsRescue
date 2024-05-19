@@ -38,6 +38,7 @@ export default class Ui {
         this.actualScene = "";
         this.isVollTintet = false;
         this.chestCounter = 0;
+        this.lvlEnd = false;
     };
 
     static loadSprites(scene) {
@@ -157,6 +158,10 @@ export default class Ui {
         this.controllsButton.setVisible(this.menuOpen);
     }
 
+    showStartMSG() {
+
+    }
+
     create() {
         this.initUI();
         this.initAnimations();
@@ -185,7 +190,7 @@ export default class Ui {
         this.controllInfoScreen.setVisible(false);
         this.controllInfoScreen.setScrollFactor(0);
         this.controllInfoScreen.setDepth(12);
-        this.controllInfoScreen.anims.play(KEY_CONTROLLS_INFO_ANIM)
+        this.controllInfoScreen.anims.play(KEY_CONTROLLS_INFO_ANIM);
 
         this.retryButton = this.scene.add.sprite(850, 540, KEY_RETRY_BUTTON).setInteractive();
         this.retryButton.postFX.addShadow(1, 1, 0.02);
@@ -254,10 +259,31 @@ export default class Ui {
         this.okButton.on('pointerdown', () => {
             this.controllInfoScreen.setVisible(false);
             this.okButton.setVisible(false);
-        })
+        });
+
+
+        this.endGameMessage = this.scene.add.text(560, 540, `You found all chests!!!! Thx for Playing our Demo 😊`, {
+            font: '42px Georgia', fill: '#FFF', 
+        });
+        this.endGameMessage.setVisible(false)
+
+        this.startGameMessage = this.scene.add.text(560, 550, `Find all Chest´s and bring them back to Start👌`, {
+            font: '42px Georgia', fill: '#FFF', 
+        });
+        this.startGameMessage.setScrollFactor(0)
+        this.startGameMessage.setVisible(false)
+        this.scene.time.delayedCall(5000, () => {
+            this.startGameMessage.setVisible(true);
+            this.scene.time.delayedCall(5000, () => {
+                this.startGameMessage.setVisible(false);
+            });
+        });
     };
 
     update(time, delta) {
-
+        if (this.chestCounter === 5 && !this.lvlEnd) {
+            this.lvlEnd = true;
+            this.endGameMessage.setVisible(true);
+        }
     };
 };
