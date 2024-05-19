@@ -10,19 +10,29 @@ import {
 } from "../collectables/collectablesConfig";
 import FuscheBuntClass from "../envAnimals/fischeBunt";
 import FischSchwarmClass from "../envAnimals/fischSchwarm";
+import Ui from "../UI/Ui";
 
 export default class SceneLvL1 extends Phaser.Scene {
     constructor() {
         super("SceneLvL1");
+    }
+    
+    initScene() {
+        this.timer = 0;
+        this.currentColor = { r: 204, g: 204, b: 204 };
         this.sceneWidth = 3840;
         this.sceneHeight = 3240;
         this.itemPool = [];
         this.colliderPool = [];
     }
 
-    initScene() {
-        this.timer = 0;
-        this.currentColor = { r: 204, g: 204, b: 204 };
+    resetScene() {
+        this.itemPool.forEach(item => {
+            item.item.destroy();
+        });
+        this.colliderPool.forEach(collider => {
+            collider.destroy();
+        })
     }
 
     preload() {
@@ -33,6 +43,7 @@ export default class SceneLvL1 extends Phaser.Scene {
         BaseShipClass.loadSprites(this);
         FuscheBuntClass.loadSprites(this);
         FischSchwarmClass.loadSprites(this);
+        Ui.loadSprites(this);
     };
 
     deepHandler() {
@@ -95,6 +106,12 @@ export default class SceneLvL1 extends Phaser.Scene {
         });
     };
 
+    initUI() {
+        this.UI = new Ui(this);
+        this.UI.create();
+        this.UI.actualScene = "SceneLvL1";
+    };
+
     create() {
         this.physics.world.setBounds(0, 0, this.sceneWidth, this.sceneHeight);
         this.lights.enable();
@@ -117,8 +134,9 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.fischSchwarm = new FischSchwarmClass(this);
         this.fischSchwarm.create();
 
-        this.createChests();
         this.initScene();
+        this.createChests();
+        this.initUI();
         this.addcollidersGround();
         this.addRiffColliders();
     };

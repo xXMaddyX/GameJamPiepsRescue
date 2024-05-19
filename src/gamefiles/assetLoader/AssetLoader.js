@@ -9,6 +9,11 @@ import MainScreenImg from '../assets/startScreen/mainScreen.png';
 import StartButton from '../assets/startScreen/startButton.png';
 import ExitButton from '../assets/startScreen/exitButton.png';
 
+//UI
+import RetryButton from '../assets/ui/retryButton.png';
+import GameMenu from '../assets/ui/gameMenu.png';
+import OkButton from '../assets/ui/okButton.png';
+
 //Player Uboot
 import PlayerUboot from '../assets/PlayerUboot/Uboot.png';
 import PlayerUbootN from '../assets/PlayerUboot/Uboot_n.png';
@@ -57,6 +62,10 @@ import FischSchwarmN from '../assets/envAssets/FischSchwarm_n.png';
 
 
 export {
+    //Game Menu
+    GameMenu,
+    RetryButton,
+    OkButton,
     //Main Screen
     MainScreenImg,
     StartButton,
