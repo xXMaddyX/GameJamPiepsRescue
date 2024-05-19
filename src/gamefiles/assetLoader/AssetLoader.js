@@ -24,6 +24,10 @@ import GreiferOpenN from '../assets/PlayerUboot/GreiferOpen_n.png';
 import GreiferDownAnim from '../assets/PlayerUboot/GreiferDownAnim.png';
 import GreiferDownAnimN from '../assets/PlayerUboot/GreiferDownAnim_n.png';
 
+//Audio
+import SurfaceAudio from '../assets/sounds/SurfaceSound.mp3';
+import UnderwaterAudio from '../assets/sounds/UnderwaterSound.mp3';
+
 
 //Sea Backgrounds
 import Boden from '../assets/Sea/Boden.png';
@@ -62,6 +66,9 @@ import FischSchwarmN from '../assets/envAssets/FischSchwarm_n.png';
 
 
 export {
+    //Audio
+    SurfaceAudio,
+    UnderwaterAudio,
     //Game Menu
     GameMenu,
     RetryButton,

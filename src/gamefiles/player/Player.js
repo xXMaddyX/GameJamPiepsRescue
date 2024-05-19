@@ -5,6 +5,8 @@ import {
     EngineBubblesN,
     PlayerUboot,
     PlayerUbootN,
+    SurfaceAudio,
+    UnderwaterAudio,
 } from "../assetLoader/AssetLoader";
 import PlayerGreifer from "./PlayerGreifer";
 
@@ -12,6 +14,9 @@ const KEY_UBOOT = "PlayerUboot";
 const KEY_ANIM_UBOOT_MOVE = "PlayerUbootMove";
 const KEY_ANIM_UBOOT_IDLE = "PlayerUbootIdle";
 const KEY_ENGINEBUBBLES = "EngineBubbles";
+
+const KEY_SURFACE_AUDIO = "surfaceAudio";
+const KEY_UNDERWATER_AUDIO = "underwaterAudio";
 
 export default class Player {
     constructor(scene, baseShip) {
@@ -31,6 +36,8 @@ export default class Player {
         if (!scene.textures.exists(KEY_ENGINEBUBBLES)) scene.load.spritesheet(KEY_ENGINEBUBBLES, [EngineBubbles, EngineBubblesN], {
             frameWidth: 18, frameHeight: 21
         });
+        scene.load.audio(KEY_SURFACE_AUDIO, SurfaceAudio);
+        scene.load.audio(KEY_UNDERWATER_AUDIO, UnderwaterAudio);
         PlayerGreifer.loadSprites(scene);
     };
     //--------------------------{{{{ ANIMATION LOADER}}}}----------------------------
@@ -87,6 +94,9 @@ export default class Player {
         this.scene.cameras.main.startFollow(this.uboot);
         this.initKeybord();
         this.scene.cameras.main;
+
+        this.surfaceAmbiente = this.scene.sound.add(KEY_SURFACE_AUDIO, {loop: true});
+        this.underwaterAmbiente = this.scene.sound.add(KEY_UNDERWATER_AUDIO, {loop: true}).setVolume(0.01);
     };
 
     initKeybord() {
@@ -188,6 +198,17 @@ export default class Player {
 
         };
         this.currentState = newState;
+    };
+
+    playerSoundHandler() {
+        if (this.uboot.y < 650 && !this.surfaceAmbiente.isPlaying) {
+            this.surfaceAmbiente.play();
+            this.underwaterAmbiente.stop();
+        }
+        if (this.uboot.y > 650 && !this.underwaterAmbiente.isPlaying) {
+            this.surfaceAmbiente.stop();
+            this.underwaterAmbiente.play();
+        }
     }
 
     //-------------------------{{{{ GAME UPDATE LOOP }}}}---------------------------------
@@ -206,5 +227,8 @@ export default class Player {
            this.constrolHandler();
         }
         this.ubootGreifer.update();
+        console.log(this.uboot.y)
+
+        this.playerSoundHandler();
     };
 }
