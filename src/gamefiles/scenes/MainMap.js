@@ -68,7 +68,7 @@ export default class SceneLvL1 extends Phaser.Scene {
             let item = new Collectables(this, this.player);
             item.create(chest, TrueConfig);
             this.physics.add.overlap(item.item, this.player.ubootGreifer.kran, () => {
-                if (this.player.ubootGreifer.isOpen) {
+                if (this.player.ubootGreifer.isOpen && !this.player.ubootGreifer.isCarrying) {
                     item.takeItem();
                 };
             });
@@ -108,7 +108,7 @@ export default class SceneLvL1 extends Phaser.Scene {
 
         Player.initAnimations(this);
         this.player = new Player(this, this.baseShip);
-        this.player.create(2700, 2800); //530 Default
+        this.player.create(150, 3530); //530 Default
         this.player.setFollowCamera(this.sceneWidth, this.sceneHeight);
 
         this.fischeBunt = new FuscheBuntClass(this);

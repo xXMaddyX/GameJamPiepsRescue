@@ -11,7 +11,7 @@ const TrueConfig = {
     repeat: -1,
 };
 const TruePositions = [
-    {x: 1100, y: 1050 * 3, depth: 1, scale: 2},
+    {x: 1500, y: 1050 * 3, depth: 1, scale: 2},
     {x: 500, y: 1050 * 3, depth: 1, scale: 2},
     {x: 2500, y: 1050 * 3, depth: 1, scale: 2}
 ];

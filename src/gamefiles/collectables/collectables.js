@@ -50,6 +50,7 @@ export default class Collectables {
     
     takeItem() {
         this.setCollectedStatus();
+        this.player.ubootGreifer.isCarrying = true;
     };
 
     setItemToPlayer() {
@@ -60,6 +61,7 @@ export default class Collectables {
     setCollectedStatus() {
         this.isCollected = true;
         this.item.setGravityY(0);
+        this.player.ubootGreifer.isClosed = true;
     };
 
     update(time, delta) {

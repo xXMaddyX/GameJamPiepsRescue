@@ -29,6 +29,7 @@ export default class PlayerGreifer {
         this.isUp = false;
         this.isOpen = false;
         this.isClosed = true;
+        this.isCarrying = false;
     }
 
     static loadSprites(scene) {
@@ -143,7 +144,8 @@ export default class PlayerGreifer {
             this.isDown = false;
             this.isIdle = false;
             this.isClosed = true;
-            this.isOpen = false
+            this.isOpen = false;
+            this.player.ubootGreifer.isCarrying = false;
         }  
     }
 
