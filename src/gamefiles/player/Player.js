@@ -227,7 +227,6 @@ export default class Player {
            this.constrolHandler();
         }
         this.ubootGreifer.update();
-        console.log(this.uboot.y)
 
         this.playerSoundHandler();
     };

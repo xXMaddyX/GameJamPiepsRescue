@@ -70,6 +70,9 @@ import TintiIdleN from '../assets/monster/Tinti_n.png';
 import TintiAttack from '../assets/monster/TintiAttack.png';
 import TintiAttackN from '../assets/monster/TintiAttack_n.png';
 
+//volltintent
+import VollTintet from '../assets/PlayerUboot/vollgetintet.png';
+
 
 export {
     //Audio
@@ -134,4 +137,5 @@ export {
     TintiIdleN,
     TintiAttack, 
     TintiAttackN,
+    VollTintet,
 };

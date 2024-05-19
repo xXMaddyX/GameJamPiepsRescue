@@ -131,15 +131,24 @@ export default class SceneLvL1 extends Phaser.Scene {
     createTintis() {
         TintiPositions.forEach(({x, y, depth, scale, timeToSpawn}) => {
             let newTinti = new TintiClass(this, this.player);
-            this.time.delayedCall(timeToSpawn, () => {
-                newTinti.create(x, y, depth, scale);
-                this.tintiPool.push(newTinti);
+            newTinti.create(x, y, depth, scale);
+            this.tintiPool.push(newTinti);
+        });
+    };
+
+    tintiColliders() {
+        this.tintiPool.forEach(tinti => {
+            this.physics.add.overlap(tinti.tinti, this.player.uboot, () => {
+                console.log("IS TRIGGERT")
+                if (!this.UI.isVollTintet) {
+                    this.UI.getTintet();
+                };
             });
         });
     };
 
     initUI() {
-        this.UI = new Ui(this);
+        this.UI = new Ui(this, this.player);
         this.UI.create();
         this.UI.actualScene = "SceneLvL1";
     };
@@ -157,7 +166,7 @@ export default class SceneLvL1 extends Phaser.Scene {
 
         Player.initAnimations(this);
         this.player = new Player(this, this.baseShip);
-        this.player.create(150, 530); //530 Default
+        this.player.create(1150, 1530); //530 Default
         this.player.setFollowCamera(this.sceneWidth, this.sceneHeight);
 
         this.fischeBunt = new FuscheBuntClass(this);
@@ -168,11 +177,12 @@ export default class SceneLvL1 extends Phaser.Scene {
 
         this.initScene();
         this.createChests();
-        this.initUI();
         this.addcollidersGround();
         this.addRiffColliders();
         this.addItemDeliverCollider();
         this.createTintis();
+        this.tintiColliders();
+        this.initUI();
     };
 
     update(time, delta) {
@@ -181,12 +191,12 @@ export default class SceneLvL1 extends Phaser.Scene {
         this.deepHandler();
         this.itemPool.forEach(item => {
             item.update();
-        })
+        });
         this.fischeBunt.update();
         this.fischSchwarm.update();
 
         this.tintiPool.forEach(tinti => {
             tinti.update();
-        })
+        });
     };
 };
