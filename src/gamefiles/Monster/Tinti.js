@@ -6,7 +6,7 @@ const KEY_TINTI_IDLE = "TintiIdle";
 const KEY_TINTI_IDLE_ANIM = "TintiIdleAnim";
 
 const PATROL_DISTANCE = 2000;
-const PLAYER_DEDECTION_RANGE = 400;
+const PLAYER_DEDECTION_RANGE = 350;
 const TINTI_SPEED = 100;
 
 export default class TintiClass {

@@ -270,7 +270,8 @@ export default class Ui {
         this.startGameMessage = this.scene.add.text(560, 550, `Find all Chest´s and bring them back to Start👌`, {
             font: '42px Georgia', fill: '#FFF', 
         });
-        this.startGameMessage.setScrollFactor(0)
+        this.startGameMessage.setScrollFactor(0);
+        this.startGameMessage.setDepth(12);
         this.startGameMessage.setVisible(false)
         this.scene.time.delayedCall(5000, () => {
             this.startGameMessage.setVisible(true);
