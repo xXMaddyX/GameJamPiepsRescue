@@ -13,6 +13,8 @@ import ExitButton from '../assets/startScreen/exitButton.png';
 import RetryButton from '../assets/ui/retryButton.png';
 import GameMenu from '../assets/ui/gameMenu.png';
 import OkButton from '../assets/ui/okButton.png';
+import ControllsButton from '../assets/ui/controllsButton.png';
+import ControllsInfo from '../assets/ui/controllsInfo.png';
 
 //Player Uboot
 import PlayerUboot from '../assets/PlayerUboot/Uboot.png';
@@ -82,6 +84,8 @@ export {
     GameMenu,
     RetryButton,
     OkButton,
+    ControllsButton,
+    ControllsInfo,
     //Main Screen
     MainScreenImg,
     StartButton,
