@@ -49,6 +49,7 @@ export default class TintiClass {
         this.tintiLight.setIntensity(0.5);
 
         this.startX = x;
+        this.startY = y;
         this.endX = x + PATROL_DISTANCE;
         this.tinti.setVelocityX(this.patrolDirection * TINTI_SPEED);
     };
@@ -75,6 +76,17 @@ export default class TintiClass {
         }
 
         this.tinti.setVelocityX(this.patrolDirection * TINTI_SPEED);
+
+        if (this.tinti.y !== this.startY) {
+            let deltaY = this.startY - this.tinti.y;
+            this.tinti.setVelocityY(Math.sign(deltaY) * TINTI_SPEED);
+            if (Math.abs(deltaY) < 1) {
+                this.tinti.setVelocityY(0);
+                this.tinti.y = this.startY;
+            }
+        } else {
+            this.tinti.setVelocityY(0);
+        }
     };
 
     chaseStatusHandler(distanceToPlayer) {
