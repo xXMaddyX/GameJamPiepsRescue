@@ -57,11 +57,13 @@ export default class TitelScene extends Phaser.Scene {
         let background = this.add.sprite(960, 540, KEY_MAINSCREEN).setScale(2);
 
         let startButton = this.add.sprite(960, 600, KEY_START_BUTTON).setScale(2).setInteractive();
+        startButton.postFX.addShadow(1, 1, 0.02)
         startButton.on('pointerover', () => {
-            startButton.anims.play(KEY_START_BUTTON_ANIM)
+            startButton.anims.play(KEY_START_BUTTON_ANIM);
         });
         startButton.on('pointerout', () => {
-            startButton.anims.stop(KEY_START_BUTTON_ANIM)
+            startButton.anims.stop(KEY_START_BUTTON_ANIM);
+            startButton.setTexture(KEY_START_BUTTON);
         });
         startButton.on('pointerdown', () => {
             this.scene.stop("TitelScene");
@@ -70,11 +72,13 @@ export default class TitelScene extends Phaser.Scene {
         });
 
         let exitButton = this.add.sprite(960, 800, KEY_EXIT_BUTTON).setScale(2).setInteractive();
+        exitButton.postFX.addShadow(1, 1, 0.02)
         exitButton.on('pointerover', () => {
             exitButton.anims.play(KEY_EXIT_BUTTON_ANIM);
         });
         exitButton.on('pointerout', () => {
             exitButton.anims.stop(KEY_EXIT_BUTTON_ANIM)
+            exitButton.setTexture(KEY_EXIT_BUTTON)
         });
         exitButton.on('pointerdown', () => {
             window.electron.quitApp();

@@ -93,6 +93,7 @@ export default class Ui {
 
 
         this.retryButton = this.scene.add.sprite(880, 540, KEY_RETRY_BUTTON).setInteractive();
+        this.retryButton.postFX.addShadow(1, 1, 0.02);
         this.retryButton.setDepth(11);
         this.retryButton.setVisible(false);
         this.retryButton.setScrollFactor(0);
@@ -108,6 +109,7 @@ export default class Ui {
         });
 
         this.exitButton = this.scene.add.sprite(1040, 540, KEY_EXIT_BUTTON).setInteractive();
+        this.exitButton.postFX.addShadow(1, 1, 0.02);
         this.exitButton.setDepth(11);
         this.exitButton.setVisible(false);
         this.exitButton.setScrollFactor(0);
