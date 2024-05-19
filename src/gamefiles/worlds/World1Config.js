@@ -132,7 +132,7 @@ const World1Config = {
         {x: 2031, y: 2770, width: 300, height: 310},
 
         //forth Riff
-        {x: 2955, y: 2075, width: 533, height: 350},
+        {x: 2955, y: 2080, width: 533, height: 350},
         {x: 3080, y: 2213, width: 490, height: 458},
         {x: 2910, y: 2413, width: 500, height: 458},
         {x: 3115, y: 2842, width: 420, height: 220},

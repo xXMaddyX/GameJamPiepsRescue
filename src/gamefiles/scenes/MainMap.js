@@ -38,7 +38,7 @@ export default class SceneLvL1 extends Phaser.Scene {
             collider.destroy();
         });
         this.tintiPool.forEach(tinti => {
-            tinti.destroy();
+            tinti.tinti.destroy();
         })
     }
 
@@ -123,9 +123,10 @@ export default class SceneLvL1 extends Phaser.Scene {
                 item.isCollected = false;
                 item.item.destroy();
                 this.player.ubootGreifer.resetGreifer();
-                console.log("IS Triggerd")
-            })
-        })
+                this.UI.chestCounter += 1;
+                this.UI.updateDisplayOnGather();
+            });
+        });
     };
 
     createTintis() {
@@ -139,9 +140,10 @@ export default class SceneLvL1 extends Phaser.Scene {
     tintiColliders() {
         this.tintiPool.forEach(tinti => {
             this.physics.add.overlap(tinti.tinti, this.player.uboot, () => {
-                console.log("IS TRIGGERT")
                 if (!this.UI.isVollTintet) {
                     this.UI.getTintet();
+                    this.player.ubootGreifer.resetGreifer();
+                    this.player.ubootLightSwitch();
                 };
             });
         });
@@ -166,7 +168,7 @@ export default class SceneLvL1 extends Phaser.Scene {
 
         Player.initAnimations(this);
         this.player = new Player(this, this.baseShip);
-        this.player.create(1150, 1530); //530 Default
+        this.player.create(150, 530); //530 Default
         this.player.setFollowCamera(this.sceneWidth, this.sceneHeight);
 
         this.fischeBunt = new FuscheBuntClass(this);

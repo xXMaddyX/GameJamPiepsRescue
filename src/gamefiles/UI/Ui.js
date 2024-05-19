@@ -31,6 +31,7 @@ export default class Ui {
         this.menuOpen = false;
         this.actualScene = "";
         this.isVollTintet = false;
+        this.chestCounter = 0;
     };
 
     static loadSprites(scene) {
@@ -103,12 +104,17 @@ export default class Ui {
         this.scene.time.delayedCall(2000, () => {
             this.player.uboot.x = 150;
             this.player.uboot.y = 530;
+            
             this.scene.time.delayedCall(1000, () => {
                 this.tintAnim.setVisible(false)
                 this.isVollTintet = false;
             });
         });
     };
+
+    updateDisplayOnGather() {
+        this.chestCounterDisplay.setText(`Chest Counter: ${this.chestCounter} / 5`)
+    }
 
     create() {
         this.initUI();
@@ -118,6 +124,12 @@ export default class Ui {
         this.tintAnim = this.scene.add.sprite(960, 540, KEY_VOLLTINTET).setDepth(12).setScale(3);
         this.tintAnim.setVisible(false);
         this.tintAnim.setScrollFactor(0);
+
+        this.chestCounterDisplay = this.scene.add.text(1500, 17, `Chest Counter: ${this.chestCounter} / 5`, {
+            font: '42px Georgia', fill: '#FFF', 
+        })
+        this.chestCounterDisplay.setScrollFactor(0);
+        this.chestCounterDisplay.setDepth(10);
 
         this.menuWindow = this.scene.add.sprite(960, 540, KEY_MENU_BACKGROUND);
         this.menuWindow.setVisible(false);
