@@ -1,5 +1,6 @@
 import Phaser from "phaser";
 import SceneLvL1 from "./scenes/MainMap";
+import TitelScene from "./scenes/TitleScreen";
 
 export default new Phaser.Game({
     type: Phaser.WEBGL,
@@ -17,6 +18,7 @@ export default new Phaser.Game({
         },
     },
     scene: [
+        new TitelScene(this),
         new SceneLvL1(this)
     ]
 });

@@ -4,6 +4,11 @@ import BootN from '../assets/backgrounds/UBoot1-n.png';
 import Himmel from '../assets/backgrounds/Himmel.png';
 import Wolken from '../assets/backgrounds/Wolken.png';
 
+//Main Screen
+import MainScreenImg from '../assets/startScreen/mainScreen.png';
+import StartButton from '../assets/startScreen/startButton.png';
+import ExitButton from '../assets/startScreen/exitButton.png';
+
 //Player Uboot
 import PlayerUboot from '../assets/PlayerUboot/Uboot.png';
 import PlayerUbootN from '../assets/PlayerUboot/Uboot_n.png';
@@ -52,6 +57,10 @@ import FischSchwarmN from '../assets/envAssets/FischSchwarm_n.png';
 
 
 export {
+    //Main Screen
+    MainScreenImg,
+    StartButton,
+    ExitButton,
     //Himmel
     Himmel,
     Boot,
