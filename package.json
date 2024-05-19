@@ -1,8 +1,8 @@
 {
-  "name": "my-app",
-  "productName": "my-app",
+  "name": "pieps-deep-dive",
+  "productName": "pieps-deep-dive",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "pieps-deep-dive-installer",
   "main": ".vite/build/main.js",
   "scripts": {
     "start": "electron-forge start",
