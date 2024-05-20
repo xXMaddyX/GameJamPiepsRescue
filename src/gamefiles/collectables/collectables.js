@@ -42,6 +42,8 @@ export default class Collectables {
         .setDepth(depth)
         .setScale(scale)
         .setGravityY(200)
+        .setBodySize(50)
+        .setOffset(0)
 
         //Anim Config
         this.intitAnimations(animConfig)
