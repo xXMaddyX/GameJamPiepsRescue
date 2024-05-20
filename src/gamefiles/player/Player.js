@@ -160,11 +160,11 @@ export default class Player {
          //Controls
          if (this.cursors.left.isDown && !this.cursors.right.isDown) {
             this.direction = "LEFT";
-            this.uboot.setVelocityX(-100);
+            this.uboot.setVelocityX(-120);
             this.ubootEngineSoundPlay();
         } else if (this.cursors.right.isDown && !this.cursors.left.isDown) {
             this.direction = "RIGHT";
-            this.uboot.setVelocityX(100);
+            this.uboot.setVelocityX(120);
             this.ubootEngineSoundPlay();
 
         } else {
@@ -174,10 +174,10 @@ export default class Player {
         }
 
         if (this.cursors.up.isDown && !this.cursors.down.isDown && !this.isSuface) {
-            this.uboot.setVelocityY(-50);
+            this.uboot.setVelocityY(-70);
             this.direction
         } else if (this.cursors.down.isDown && !this.cursors.up.isDown) {
-            this.uboot.setVelocityY(50);
+            this.uboot.setVelocityY(70);
         } else {this.uboot.setVelocityY(0);}
         
         if (this.ButtonQ.isDown && !this.buttonQisPressed) {
