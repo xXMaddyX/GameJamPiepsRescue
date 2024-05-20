@@ -125,6 +125,7 @@ export default class SceneLvL1 extends Phaser.Scene {
                 this.player.ubootGreifer.resetGreifer();
                 this.UI.chestCounter += 1;
                 this.UI.updateDisplayOnGather();
+                this.player.chestDeliverdSound();
             });
         });
     };

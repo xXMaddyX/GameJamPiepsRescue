@@ -7,6 +7,8 @@ import {
     PlayerUbootN,
     SurfaceAudio,
     UnderwaterAudio,
+    ChestDeliverdBell,
+    UbootEngineSound,
 } from "../assetLoader/AssetLoader";
 import PlayerGreifer from "./PlayerGreifer";
 
@@ -17,6 +19,8 @@ const KEY_ENGINEBUBBLES = "EngineBubbles";
 
 const KEY_SURFACE_AUDIO = "surfaceAudio";
 const KEY_UNDERWATER_AUDIO = "underwaterAudio";
+const KEY_DELIVER_BELL = "DeliverBell";
+const KEY_UBOOT_ENGINE_SOUND = "UbootEngineSound";
 
 export default class Player {
     constructor(scene, baseShip) {
@@ -38,6 +42,8 @@ export default class Player {
         });
         scene.load.audio(KEY_SURFACE_AUDIO, SurfaceAudio);
         scene.load.audio(KEY_UNDERWATER_AUDIO, UnderwaterAudio);
+        scene.load.audio(KEY_DELIVER_BELL, ChestDeliverdBell);
+        scene.load.audio(KEY_UBOOT_ENGINE_SOUND, UbootEngineSound);
         PlayerGreifer.loadSprites(scene);
     };
     //--------------------------{{{{ ANIMATION LOADER}}}}----------------------------
@@ -97,6 +103,8 @@ export default class Player {
 
         this.surfaceAmbiente = this.scene.sound.add(KEY_SURFACE_AUDIO, {loop: true});
         this.underwaterAmbiente = this.scene.sound.add(KEY_UNDERWATER_AUDIO, {loop: true}).setVolume(0.01);
+        this.deliverBell = this.scene.sound.add(KEY_DELIVER_BELL);
+        this.ubootEngine = this.scene.sound.add(KEY_UBOOT_ENGINE_SOUND).setVolume(0.01);
     };
 
     initKeybord() {
@@ -141,18 +149,28 @@ export default class Player {
         this.ubootLight.setVisible(this.lightsActive)
     }
 
+    ubootEngineSoundPlay() {
+        if (!this.ubootEngine.isPlaying) {
+            this.ubootEngine.play();
+        };
+    }
+
     //-------------------------{{{{ PLAYER CONTROL HANDLER }}}}---------------------------
     constrolHandler() {
          //Controls
          if (this.cursors.left.isDown && !this.cursors.right.isDown) {
             this.direction = "LEFT";
             this.uboot.setVelocityX(-100);
+            this.ubootEngineSoundPlay();
         } else if (this.cursors.right.isDown && !this.cursors.left.isDown) {
             this.direction = "RIGHT";
             this.uboot.setVelocityX(100);
+            this.ubootEngineSoundPlay();
+
         } else {
             this.uboot.setVelocityX(0);
             this.direction = "IDLE";
+            this.ubootEngine.stop();
         }
 
         if (this.cursors.up.isDown && !this.cursors.down.isDown && !this.isSuface) {
@@ -210,6 +228,10 @@ export default class Player {
             this.underwaterAmbiente.play();
         }
     }
+
+    chestDeliverdSound() {
+        this.deliverBell.play();
+    };
 
     //-------------------------{{{{ GAME UPDATE LOOP }}}}---------------------------------
     update(time, delta) {

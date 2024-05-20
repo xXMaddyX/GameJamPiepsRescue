@@ -8,6 +8,7 @@ import {
     VollTintet,
     ControllsButton,
     ControllsInfo,
+    TintiSpash,
 } from "../assetLoader/AssetLoader";
 
 const KEY_MENU_BACKGROUND = "MenuBackground";
@@ -24,6 +25,8 @@ const KEY_OK_BUTTON_ANIM = "okButtonAnim";
 const KEY_CONTROLLS_BUTTON_ANIM = "ControllsButtonAnim";
 const KEY_VOLLTINTET_ANIM = "VollTintetAnim";
 const KEY_CONTROLLS_INFO_ANIM = "ControllsInfoScreenAnim";
+
+const KEY_TINTI_SOUND = "TintiSound";
 
 export default class Ui {
     constructor(scene, player) {
@@ -61,6 +64,7 @@ export default class Ui {
         if (!scene.textures.exists(KEY_CONTROLLS_INFO)) scene.load.spritesheet(KEY_CONTROLLS_INFO, ControllsInfo, {
             frameWidth: 537, frameHeight: 339
         });
+        scene.load.audio(KEY_TINTI_SOUND, TintiSpash);
     };
 
     initAnimations() {
@@ -136,6 +140,7 @@ export default class Ui {
         this.tintAnim.setVisible(true)
         this.tintAnim.anims.play(KEY_VOLLTINTET_ANIM);
         this.isVollTintet = true;
+        this.tintiSound.play();
         this.scene.time.delayedCall(2000, () => {
             this.player.uboot.x = 150;
             this.player.uboot.y = 530;
@@ -156,10 +161,6 @@ export default class Ui {
         this.retryButton.setVisible(this.menuOpen);
         this.exitButton.setVisible(this.menuOpen);
         this.controllsButton.setVisible(this.menuOpen);
-    }
-
-    showStartMSG() {
-
     }
 
     create() {
@@ -279,6 +280,8 @@ export default class Ui {
                 this.startGameMessage.setVisible(false);
             });
         });
+
+        this.tintiSound = this.scene.sound.add(KEY_TINTI_SOUND)
     };
 
     update(time, delta) {

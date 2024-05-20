@@ -29,6 +29,9 @@ import GreiferDownAnimN from '../assets/PlayerUboot/GreiferDownAnim_n.png';
 //Audio
 import SurfaceAudio from '../assets/sounds/SurfaceSound.mp3';
 import UnderwaterAudio from '../assets/sounds/UnderwaterSound.mp3';
+import ChestDeliverdBell from '../assets/sounds/ChestDeliverPing.wav';
+import UbootEngineSound from '../assets/sounds/UbootEngineSound.wav';
+import TintiSpash from '../assets/sounds/TintiSplash.wav';
 
 
 //Sea Backgrounds
@@ -80,6 +83,9 @@ export {
     //Audio
     SurfaceAudio,
     UnderwaterAudio,
+    ChestDeliverdBell,
+    UbootEngineSound,
+    TintiSpash,
     //Game Menu
     GameMenu,
     RetryButton,
