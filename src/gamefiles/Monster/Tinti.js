@@ -17,7 +17,10 @@ export default class TintiClass {
         this.player = player;
         this.onPatrol = true;
         this.isChasingPlayer = false;
+        this.isToCloseToSpawnPoint = false;
         this.patrolDirection = 1;
+        this.spawnX = 150;
+        this.spawnY = 530;
     };
 
     static loadSprites(scene) {
@@ -90,26 +93,36 @@ export default class TintiClass {
     };
 
     chaseStatusHandler(distanceToPlayer) {
-        if (distanceToPlayer < PLAYER_DEDECTION_RANGE) {
+        if (distanceToPlayer < PLAYER_DEDECTION_RANGE && !this.isToCloseToSpawnPoint) {
             this.isChasingPlayer = true;
         } else {
             this.isChasingPlayer = false;
         };
     };
 
+    checkIfToCloseToPlayerSpawn() {
+        let distanceToSpawn = Phaser.Math.Distance.Between(this.tinti.x, this.tinti.y, this.spawnX, this.spawnY);
+        if (distanceToSpawn < 400) {
+            this.isToCloseToSpawnPoint = true
+        } else {
+            this.isToCloseToSpawnPoint = false
+        }
+    }
+
     update(time, delta) {
         let distanceToPlayer = Phaser.Math.Distance.Between(
             this.tinti.x, this.tinti.y,
             this.player.uboot.x, this.player.uboot.y
         );
-
+        this.checkIfToCloseToPlayerSpawn();
         this.chaseStatusHandler(distanceToPlayer);
         this.directionHandler();
         this.tintiLightHandler();
         if (this.isChasingPlayer) {
             this.scene.physics.moveToObject(this.tinti, this.player.uboot, TINTI_SPEED);
-        } else {
-            this.patrol();
+        }
+        if (!this.isChasingPlayer || this.isToCloseToSpawnPoint) {
+            this.patrol()
         };
     };
 };
