@@ -37,6 +37,8 @@ export default class Collectables {
     };
 
     create({x, y, itemKey, depth, scale}, animConfig) {
+        this.originX = x
+        this.originY = y
         this.item = this.scene.physics.add.sprite(x, y, itemKey).setPipeline("Light2D")
         .setPipeline("Light2D")
         .setDepth(depth)
@@ -74,6 +76,10 @@ export default class Collectables {
             if (this.player.ubootGreifer.isUp) {
                 this.isCollected = false;
                 this.item.setGravityY(100)
+            }
+            if (this.item.y >= 3240) {
+                this.item.x = this.originX
+                this.item.y = this.originY
             }
         };
     };

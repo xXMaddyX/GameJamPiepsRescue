@@ -118,7 +118,7 @@ export default class Player {
     setFollowCamera(width, height) {
         this.scene.cameras.main.setBounds(0, 0, width, height);
         this.scene.cameras.main.setDeadzone(50, 50);
-        this.scene.cameras.main.startFollow(this.uboot, true, 0.1, 0.1);
+        this.scene.cameras.main.startFollow(this.uboot, false, 1, 1);
     };
 
     //-------------------------{{{{ LIGHT Position HANDLER}}}}----------------------------
