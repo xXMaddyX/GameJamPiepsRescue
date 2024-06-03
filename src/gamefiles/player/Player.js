@@ -174,7 +174,6 @@ export default class Player {
 
         if (this.cursors.up.isDown && !this.cursors.down.isDown && !this.isSuface) {
             this.uboot.setVelocityY(-70);
-            this.direction
         } else if (this.cursors.down.isDown && !this.cursors.up.isDown) {
             this.uboot.setVelocityY(70);
         } else {this.uboot.setVelocityY(0);}
