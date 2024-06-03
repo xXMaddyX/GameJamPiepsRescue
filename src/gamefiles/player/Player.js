@@ -99,7 +99,6 @@ export default class Player {
 
         this.scene.cameras.main.startFollow(this.uboot);
         this.initKeybord();
-        this.scene.cameras.main;
 
         this.surfaceAmbiente = this.scene.sound.add(KEY_SURFACE_AUDIO, {loop: true});
         this.underwaterAmbiente = this.scene.sound.add(KEY_UNDERWATER_AUDIO, {loop: true}).setVolume(0.01);

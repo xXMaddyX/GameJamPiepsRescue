@@ -31,7 +31,6 @@ const TaucherPositions = [
     {},
 ]
 
-
 export {
     KEYS,
     TrueConfig,

@@ -1,5 +1,4 @@
 import Phaser from "phaser";
-import Player from "../player/Player";
 import {
     BaseShip,
     BaseShipN,
@@ -34,13 +33,5 @@ export default class BaseShipClass {
 
         this.kran = this.scene.add.sprite(baseShipOriginX - 700, baseShipOroginY - 152, KEY_KRAN).setDepth(0).setScale(1.5).setPipeline("Light2D");
         this.kran.flipX = true
-    };
-
-    controlHandler() {
-
-    };
-
-    update(time, delta) {
-
     };
 };

@@ -84,8 +84,4 @@ export default class TitelScene extends Phaser.Scene {
             window.electron.quitApp();
         });
     }
-
-    update(time, delta) {
-
-    }
 };
